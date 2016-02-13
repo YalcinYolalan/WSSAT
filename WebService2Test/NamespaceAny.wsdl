@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<s2:definitions targetNamespace="urn:be:fgov:ehealth:ttp:protocol:v1" xmlns:s0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:s1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s2="http://schemas.xmlsoap.org/wsdl/" xmlns:s3="urn:be:fgov:ehealth:ttp:protocol:v1" xmlns:s4="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+
+  <wsp:Policy s1:Id="samlPolicy-holder-of-key-signed-Smals" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+    <sp:AsymmetricBinding>
+      <wsp:Policy>
+        <sp:InitiatorToken>
+          <wsp:Policy>
+            <sp:SamlToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssSamlV11Token10/>
+              </wsp:Policy>
+            </sp:SamlToken>
+          </wsp:Policy>
+        </sp:InitiatorToken>
+        <sp:RecipientToken>
+          <wsp:Policy>
+            <sp:X509Token sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/Never">
+              <wsp:Policy>
+                <sp:WssX509V3Token10/>
+              </wsp:Policy>
+            </sp:X509Token>
+          </wsp:Policy>
+        </sp:RecipientToken>
+        <sp:AlgorithmSuite>
+          <wsp:Policy>
+            <sp:Basic256/>
+          </wsp:Policy>
+        </sp:AlgorithmSuite>
+        <sp:Layout>
+          <wsp:Policy>
+            <sp:Lax/>
+          </wsp:Policy>
+        </sp:Layout>
+        <sp:IncludeTimestamp/>
+        <!--<sp:ProtectTokens/>-->
+        <sp:OnlySignEntireHeadersAndBody/>
+      </wsp:Policy>
+    </sp:AsymmetricBinding>
+    <sp:Wss10>
+      <wsp:Policy>
+        <sp:MustSupportRefKeyIdentifier/>
+        <sp:MustSupportRefIssuerSerial/>
+      </wsp:Policy>
+    </sp:Wss10>
+    <sp:SignedParts>
+      <sp:Body/>
+    </sp:SignedParts>
+  </wsp:Policy>
+
+
+  <wsp:UsingPolicy s2:Required="true"/>
+  <s2:types>
+    <xsd:schema xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="urn:be:fgov:ehealth:ttp:protocol:v1" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ttp="urn:be:fgov:ehealth:ttp:protocol:v1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="urn:be:fgov:ehealth:ttp:protocol:v1" schemaLocation="../XSD/ehealth-ttp-schema-protocol-proxy-1_3.xsd"/>
+    </xsd:schema>
+  </s2:types>
+  <s2:message name="SendCMSMsgIn">
+    <s2:part element="s3:SendCMSMessageRequest" name="request"/>
+  </s2:message>
+  <s2:message name="SendCMSMsgOut">
+    <s2:part element="s3:SendCMSMessageResponse" name="response"/>
+  </s2:message>
+  <s2:portType name="TTPPortType">
+    <s2:operation name="SendCMSMessage">
+      <s2:documentation>send a message encrypted with CMS</s2:documentation>
+      <s2:input message="s3:SendCMSMsgIn"/>
+      <s2:output message="s3:SendCMSMsgOut"/>
+    </s2:operation>
+  </s2:portType>
+  <s2:binding name="TTPSoapBinding" type="s3:TTPPortType">
+    <s4:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s2:operation name="SendCMSMessage">
+      <s4:operation soapAction="urn:be:fgov:ehealth:ttp:protocol:v1:SendCMSMessage" style="document"/>
+      <s2:input>
+        <s4:body use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s4:body use="literal"/>
+      </s2:output>
+    </s2:operation>
+  </s2:binding>
+  <s2:service name="TTPService">
+    <s2:port binding="s3:TTPSoapBinding" name="TTPPort">
+      <s4:address location="https://services-acpt.ehealth.fgov.be/ebirth/notification/v1"/>
+    </s2:port>
+  </s2:service>
+  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+    <xs:element name='foo'>
+      <xs:complexType>
+        <xs:sequence>
+          <xs:any namespace='##any' />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+</s2:definitions>

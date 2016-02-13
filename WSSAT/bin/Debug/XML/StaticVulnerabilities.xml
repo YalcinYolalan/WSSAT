@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StaticVulnerabilities>
+  <StaticVulnerability>
+    <id>1</id>
+    <title>Weak XML Schema: Unbounded Occurrences</title>
+    <description>
+      Setting a maxOccurs attribute value to unbounded can lead to resources exhaustion and ultimately a denial of service.
+      Processing XML documents can be computationally expensive. Attackers can take advantage of schemas that allow 
+      unbounded elements by supplying an application with a very large number elements causing the application to exhaust system resources.
+    </description>
+    <link>http://www.hpenterprisesecurity.com/vulncat/en/vulncat/xml/weak_xml_schema_unbounded_occurrences.html</link>
+    <severity>Medium</severity>
+    <attributeValue>true</attributeValue>
+    <searchElement>maxOccurs</searchElement>
+    <searchValue>unbounded</searchValue>
+    <missingTag></missingTag>
+  </StaticVulnerability>
+  <StaticVulnerability>
+    <id>2</id>
+    <title>Weak XML Schema: Undefined Namespace</title>
+    <description>
+      Specifying a namespace of ##any in the &lt;any&gt; element means the schema allows elements beyond what is explicitly defined in the schema, 
+      thereby making it easier to craft malicious documents.
+      A schema that does not restrict element namespaces permits arbitrary elements to be included in a valid document. 
+      This makes it easier for attackers to perform attacks like XML injection by including tags 
+      that do not conform to the standards imposed on the rest of the document.
+    </description>
+    <link>http://www.hpenterprisesecurity.com/vulncat/en/vulncat/xml/weak_xml_schema_undefined_namespace.html</link>
+    <severity>Low</severity>
+    <attributeValue>true</attributeValue>
+    <searchElement>namespace</searchElement>
+    <searchValue>##any</searchValue>
+    <missingTag></missingTag>
+  </StaticVulnerability>
+  <StaticVulnerability>
+    <id>3</id>
+    <title>Weak WS-SecurityPolicy: Insecure Transport</title>
+    <description>
+      <![CDATA[
+      The application configuration should ensure that HTTPS is used to transport all sensitive information.
+      If an application handles sensitive information and does not use message-level encryption, 
+      then it should only be allowed to communicate over an encrypted transport channel.
+      Example 1: The following transport binding uses HTTP instead of HTTPS:
+      <sp:TransportBinding>
+        <wsp:Policy>
+          <sp:TransportToken>
+            <wsp:Policy>
+              <sp:HttpToken/>
+            </wsp:Policy>
+          </sp:TransportToken>
+          ...
+        </sp:TransportBinding>
+        ]]>
+    </description>
+    <link>http://www.hpenterprisesecurity.com/vulncat/en/vulncat/webservices/weak_ws-securitypolicy_insecure_transport.html</link>
+    <severity>High</severity>
+    <attributeValue>false</attributeValue>
+    <searchElement>HttpToken</searchElement>
+    <searchValue></searchValue>
+    <missingTag></missingTag>
+  </StaticVulnerability>
+<StaticVulnerability>
+    <id>4</id>
+    <title>Weak WS-SecurityPolicy: Insufficient Supporting Token Protection</title>
+    <description>
+      <![CDATA[
+      The integrity of tokens cannot be guaranteed on unsigned tokens. Similarly, the confidentiality of tokens cannot be guaranteed on unencrypted tokens. 
+      The WS-SecurityPolicy standard supports seven assertions when specifying supporting tokens: 
+      SupportingTokens, SignedSupportingTokens, EndorsingSupportingTokens, SignedEndorsingSupportingTokens, SignedEncryptedSupportingTokens, EndorsingEncryptedSupportingTokens and SignedEndorsingEncryptedSupportingTokens.
+      It might be possible to breach the integrity or confidentiality of tokens that are not signed or encrypted. Endorsing tokens sign the message signature to prevent tampering of the message signature.
+      Example 1: The following WS-SecurityPolicy policy entry allows UsernameTokens to be sent in SOAP messages without a signature or encryption:
+      <sp:SupportingTokens>
+        <wsp:Policy>
+          <sp:UsernameToken
+            sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200512/IncludeToken/AlwaysToRecipient">
+            <wsp:Policy>
+              <sp:WssUsernameToken10/>
+            </wsp:Policy>
+          </sp:UsernameToken>
+        </wsp:Policy>
+      </sp:SupportingTokens>
+        ]]>
+    </description>
+    <link>http://www.hpenterprisesecurity.com/vulncat/en/vulncat/webservices/weak_ws-securitypolicy_insecure_transport.html</link>
+    <severity>High</severity>
+    <attributeValue>false</attributeValue>
+    <searchElement>SupportingTokens</searchElement>
+    <searchValue></searchValue>
+    <missingTag></missingTag>
+  </StaticVulnerability>
+<StaticVulnerability>
+    <id>5</id>
+    <title>Weak WS-SecurityPolicy: Tokens Not Protected</title>
+    <description>
+      <![CDATA[
+      When token protection is not enabled, the integrity of tokens might not be guaranteed since token protection enforces token signing. 
+      Any part of a message that is not signed has the potential to be intercepted and modified without the knowledge of the sender or the receiver. 
+      Without a signature, the receiver cannot cryptographically verify that the contents of a message really originated with the sender.
+      Example 1: The following WS-SecurityPolicy policy entry omits the <ProtectTokens> tag:
+      <sp:AsymmetricBinding>
+        <wsp:Policy>
+          <sp:InitiatorToken>
+          ...
+          </sp:InitiatorToken>
+          <sp:RecipientToken>
+          ...
+          </sp:RecipientToken>
+          <sp:AlgorithmSuite>
+          ...
+          </sp:AlgorithmSuite>
+          <sp:Layout>
+          ...
+          </sp:Layout>
+          <sp:IncludeTimestamp/>
+
+          <sp:OnlySignEntireHeadersAndBody/>
+        </wsp:Policy>
+      </sp:AsymmetricBinding>
+        ]]>
+    </description>
+    <link>http://www.hpenterprisesecurity.com/vulncat/en/vulncat/webservices/weak_ws-securitypolicy_tokens_not_protected.html</link>
+    <severity>Critical</severity>
+    <attributeValue>false</attributeValue>
+    <searchElement>AsymmetricBinding,SymmetricBinding</searchElement>
+    <searchValue></searchValue>
+    <missingTag>ProtectTokens</missingTag>
+  </StaticVulnerability>
+</StaticVulnerabilities>

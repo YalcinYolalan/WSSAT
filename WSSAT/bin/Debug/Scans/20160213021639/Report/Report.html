@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>WSSAT Scan Result</title>
+    <script type="text/javascript" src="../../../PieChart/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../PieChart/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="../../../PieChart/jqplot.pieRenderer.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../PieChart/jquery.jqplot.css" />
+    <script type="text/javascript" src="../../../Accordion/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../../Accordion/jquery-ui.css" />
+    <style>
+        body {
+            font: 72.5% "Trebuchet MS", sans-serif;
+            margin: 50px;
+        }
+
+        #tbl4 .accordion {
+            background: #C7DDEE none repeat-x scroll center left;
+            color: #000;
+            padding: 7px 15px;
+        }
+
+        #tbl4 tr {
+            background: #eff6fc none repeat-x scroll center left;
+            color: #000;
+            padding: 7px 15px;
+        }
+        #tbl4 .accordion div.arrow {
+            background: transparent url(../../../../Accordion/arrows.png) no-repeat scroll 0px 0px;
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+
+        #tbl4 .accordion div.arrow .up {
+            background-position: 0px 0px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            jQuery.jqplot.config.enablePlugins = true;
+            plot7 = jQuery.jqplot('chart1',
+              [[['Static (1)', 1], ['Dynamic (6)', 6]]],
+              {
+                  title: 'Vulnerability Type',
+                  seriesDefaults: { shadow: true, renderer: jQuery.jqplot.PieRenderer, rendererOptions: { showDataLabels: true } },
+                  legend: { show: true }
+              }
+            );
+        });
+        $(document).ready(function () {
+            jQuery.jqplot.config.enablePlugins = true;
+            plot7 = jQuery.jqplot('chart2',
+              [[['Insecure Communication - SSL Not Used (2)', 2],['Unauthenticated Service Method (2)', 2],['Error Based SQL Injection (2)', 2],['Weak XML Schema: Unbounded Occurrences (1)', 1]]],
+              {
+                  title: 'Vulnerability',
+                  seriesDefaults: { shadow: true, renderer: jQuery.jqplot.PieRenderer, rendererOptions: { showDataLabels: true } },
+                  legend: { show: true }
+              }
+            );
+        });
+        $(document).ready(function () {
+            jQuery.jqplot.config.enablePlugins = true;
+            plot7 = jQuery.jqplot('chart3',
+              [[['Critical (2)', 2],['High (4)', 4], ['Medium (1)', 1], ['Low (0)', 0]]],
+              {
+                  title: 'Severity',
+                  seriesDefaults: { shadow: true, renderer: jQuery.jqplot.PieRenderer, rendererOptions: { showDataLabels: true } },
+                  legend: { show: true }
+              }
+            );
+        });
+        $(function () {
+            var $research = $('.wsdl');
+            $research.find("tr").not('.accordion').hide();
+            $research.find("tr").eq(0).show();
+
+            $research.find(".accordion").click(function () {
+                $research.find('.accordion').not(this).siblings().fadeOut(500);
+                $(this).siblings().fadeToggle(500);
+
+                $(this).find("div.arrow").toggleClass("up");
+
+            }).eq(0).trigger('click');
+        });
+    </script>
+</head>
+<body>
+    <table style="text-align:center;width:100%;background: #eff6fc" id="tbl1">
+        <tr>
+            <td colspan="2" style="border-style:solid;"><h1>Web Service Security Assesment Tool Scan Result</h1></td>
+        </tr>
+        <tr>
+            <td style="border-style:solid; color:maroon">Vulnerability Count:<b>7</b></td>
+            <td style="border-style:solid; color:maroon">Duration(Mnt):<b>1,49</b>&nbsp;&nbsp;Scan Started:<b>13.02.2016 02:16:39</b>&nbsp;&nbsp;Total Request Count:<b>143</b></td>
+        </tr>
+    </table>
+    <table style="width:100%;background: #eff6fc" id="tbl2">
+        <tr>
+            <td><div id="chart2" style="height:300px; width:500px;"></div></td>
+            <td><div id="chart3" style="height:300px; width:500px;"></div></td>
+            <td><div id="chart1" style="height:300px; width:500px;"></div></td>
+        </tr>
+    </table>
+    <table style="width:100%;" id="tbl3">
+        <tr>
+            <td><table style='border-style:solid;width:100%' id='tbl4' class='wsdl'><tr class='accordion'><td><b>WSDL Address: http://www.wstest.com/Sqli.asmx?WSDL</b>&nbsp;&nbsp;Vulnerability Count:4</td><td><div class='arrow'></div></td></tr><tr><td colspan='2'><ul><li>Insecure Communication - SSL Not Used - Severity:<b>High</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b></b></li><li>Parameter Name:<b></b></li><li>Payload:<br /><b><pre></pre></b></li><li>Status Code:<br /><b><pre></pre></b></li><li>Response:<br /><b><pre></pre></b></li><li><b>Description:</b><br /><pre>Insecure communication means that an attacker who can sniff (steal, modify) traffic from the network will be able to access the conversation, 
+    including any credentials or sensitive information transmitted.</pre><br /><a href='http://www.hpenterprisesecurity.com/vulncat/en/vulncat/webservices/weak_ws-securitypolicy_insecure_transport.html' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Unauthenticated Service Method - Severity:<b>High</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b>SQLInjectMe1</b></li><li>Parameter Name:<b></b></li><li>Payload:<br /><b><pre></pre></b></li><li>Status Code:<br /><b><pre>200</pre></b></li><li>Response:<br /><b><pre>System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---&gt; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in d:\Projects\DotNet\CSharp\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in d:\Projects\DotNet\CSharp\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20</pre></b></li><li><b>Description:</b><br /><pre>Insufficient Authentication occurs when a web service permits an attacker to access sensitive function without having to 
+    properly authenticate.</pre><br /><a href='http://projects.webappsec.org/w/page/13246939/Insufficient%20Authentication' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Error Based SQL Injection - Severity:<b>Critical</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b>SQLInjectMe1</b></li><li>Parameter Name:<b>id</b></li><li>Payload:<br /><b><pre>&#39;</pre></b></li><li>Status Code:<br /><b><pre>200</pre></b></li><li>Response:<br /><b><pre>System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---&gt; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in d:\Projects\DotNet\CSharp\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in d:\Projects\DotNet\CSharp\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20</pre></b></li><li><b>Description:</b><br /><pre>A SQL injection attack consists of insertion or &quot;injection&quot; of a SQL query via the input data from the client to the application. 
+    A successful SQL injection exploit can read sensitive data from the database, modify database data, 
+    execute administration operations on the database etc.</pre><br /><a href='https://www.owasp.org/index.php/SQL_Injection' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Error Based SQL Injection - Severity:<b>Critical</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b>SQLInjectMe1</b></li><li>Parameter Name:<b>x</b></li><li>Payload:<br /><b><pre>&#39;</pre></b></li><li>Status Code:<br /><b><pre>200</pre></b></li><li>Response:<br /><b><pre>System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---&gt; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in d:\Projects\DotNet\CSharp\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in d:\Projects\DotNet\CSharp\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20</pre></b></li><li><b>Description:</b><br /><pre>A SQL injection attack consists of insertion or &quot;injection&quot; of a SQL query via the input data from the client to the application. 
+    A successful SQL injection exploit can read sensitive data from the database, modify database data, 
+    execute administration operations on the database etc.</pre><br /><a href='https://www.owasp.org/index.php/SQL_Injection' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr></table><table style='border-style:solid;width:100%' id='tbl4' class='wsdl'><tr class='accordion'><td><b>WSDL Address: http://www.wstest.com/WeakXMLTest.asmx?WSDL</b>&nbsp;&nbsp;Vulnerability Count:3</td><td><div class='arrow'></div></td></tr><tr><td colspan='2'><ul><li>Weak XML Schema: Unbounded Occurrences - Severity:<b>Medium</b> - <i>Scan Type: Static</i></li><li>Line:<br /><b><pre>&lt;s:element minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot; name=&quot;CompType&quot; nillable=&quot;true&quot; type=&quot;tns:CompType&quot; xmlns:s=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;
+&lt;s:element minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot; name=&quot;int&quot; type=&quot;s:int&quot; xmlns:s=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;
+&lt;s:element minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot; name=&quot;string&quot; nillable=&quot;true&quot; type=&quot;s:string&quot; xmlns:s=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;
+&lt;s:element minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot; name=&quot;Book&quot; xmlns:s=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+  &lt;s:complexType&gt;
+    &lt;s:sequence&gt;
+      &lt;s:element minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot; name=&quot;Title&quot; type=&quot;s:string&quot; /&gt;
+      &lt;s:element minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot; name=&quot;Author&quot; type=&quot;s:string&quot; /&gt;
+      &lt;s:element minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot; name=&quot;PublishDate&quot; type=&quot;s:string&quot; /&gt;
+    &lt;/s:sequence&gt;
+  &lt;/s:complexType&gt;
+&lt;/s:element&gt;
+</pre></b></li><li><b>Description:</b><br /><pre>
+      Setting a maxOccurs attribute value to unbounded can lead to resources exhaustion and ultimately a denial of service.
+      Processing XML documents can be computationally expensive. Attackers can take advantage of schemas that allow 
+      unbounded elements by supplying an application with a very large number elements causing the application to exhaust system resources.
+    </pre><br /><a href='http://www.hpenterprisesecurity.com/vulncat/en/vulncat/xml/weak_xml_schema_unbounded_occurrences.html' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Insecure Communication - SSL Not Used - Severity:<b>High</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b></b></li><li>Parameter Name:<b></b></li><li>Payload:<br /><b><pre></pre></b></li><li>Status Code:<br /><b><pre></pre></b></li><li>Response:<br /><b><pre></pre></b></li><li><b>Description:</b><br /><pre>Insecure communication means that an attacker who can sniff (steal, modify) traffic from the network will be able to access the conversation, 
+    including any credentials or sensitive information transmitted.</pre><br /><a href='http://www.hpenterprisesecurity.com/vulncat/en/vulncat/webservices/weak_ws-securitypolicy_insecure_transport.html' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Unauthenticated Service Method - Severity:<b>High</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b>MethodComplexType</b></li><li>Parameter Name:<b></b></li><li>Payload:<br /><b><pre></pre></b></li><li>Status Code:<br /><b><pre>400</pre></b></li><li>Response:<br /><b><pre></pre></b></li><li><b>Description:</b><br /><pre>Insufficient Authentication occurs when a web service permits an attacker to access sensitive function without having to 
+    properly authenticate.</pre><br /><a href='http://projects.webappsec.org/w/page/13246939/Insufficient%20Authentication' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr></table></td>
+        </tr>
+    </table>
+</body>
+</html>

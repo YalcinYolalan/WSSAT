@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Publish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Authentication.asmx">
+      <publishTime>10/30/2015 15:56:44</publishTime>
+    </File>
+    <File Include="bin/WebService2Test.dll">
+      <publishTime>11/10/2015 09:55:09</publishTime>
+    </File>
+    <File Include="SOAPFault.asmx">
+      <publishTime>11/04/2015 13:39:22</publishTime>
+    </File>
+    <File Include="Sqli.asmx">
+      <publishTime>10/30/2015 15:56:27</publishTime>
+    </File>
+    <File Include="WeakXMLTest.asmx">
+      <publishTime>11/06/2015 13:58:12</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/10/2015 09:55:10</publishTime>
+    </File>
+    <File Include="XSS.asmx">
+      <publishTime>10/31/2015 16:47:47</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

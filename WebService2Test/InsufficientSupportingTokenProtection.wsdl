@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsi='http://www.w3.org/2001/XMLSchema'
+		  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
+		  targetNamespace='http://weather.telventdtn.com/soap-2.3/doc/'
+		  xmlns:tns='http://weather.telventdtn.com/soap-2.3/doc/'
+		  xmlns:wx='http://weather.telventdtn.com/soap-2.3/doc/'
+
+		  xmlns:wsaw='http://www.w3.org/2006/05/addressing/wsdl'
+		  xmlns:wsp='http://schemas.xmlsoap.org/ws/2004/09/policy'
+		  xmlns:wsdl11-soap12='http://schemas.xmlsoap.org/wsdl/soap12/'
+
+		  xsi:schemaLocation='http://weather.telventdtn.com/soap-2.3/doc/ http://weather.telventdtn.com/soap-2.3/doc/TDTNWeatherDataService.xsd http://schemas.xmlsoap.org/wsdl/ http://weather.telventdtn.com/soap-2.3/doc/wsdl10.xsd http://www.w3.org/2006/05/addressing/wsdl http://weather.telventdtn.com/soap-2.3/doc/ws-addr-wsdl.xsd http://schemas.xmlsoap.org/wsdl/http/ http://weather.telventdtn.com/soap-2.3/doc/wsdl10-http.xsd http://schemas.xmlsoap.org/wsdl/soap12/ http://weather.telventdtn.com/soap-2.3/doc/wsdl11soap12.xsd http://schemas.xmlsoap.org/wsdl/mime/ http://weather.telventdtn.com/soap-2.3/doc/wsdl10-mime.xsd http://schemas.xmlsoap.org/ws/2004/09/policy http://weather.telventdtn.com/soap-2.3/doc/ws-policy.xsd'>
+
+  <wsp:Policy xmlns:wsu='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd' xsi:schemaLocation='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd http://weather.telventdtn.com/soap-2.3/doc/oasis-200401-wss-wssecurity-utility-1.0.xsd' wsu:Id='UsernameToken'>
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SupportingTokens xmlns:sp='http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702'>
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken='http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient' />
+          </wsp:Policy>
+        </sp:SupportingTokens>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+
+
+  <wsdl:types>
+    <xsd:schema 
+       xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+       targetNamespace='http://weather.telventdtn.com/soap-2.3/doc/'>
+    </xsd:schema>    
+  </wsdl:types>
+  <wsdl:import location='http://weather.telventdtn.com/soap-2.3/doc/TDTNWeatherDataService.xsd' namespace='http://weather.telventdtn.com/soap-2.3/doc/' />
+  
+  
+  <wsdl:message name='Request'>
+    <wsdl:part name='parameters' element='wx:weatherDataRequest' />
+  </wsdl:message>
+  <wsdl:message name='Response'>
+    <wsdl:part name='parameters' element='wx:weatherDataResponse' />
+  </wsdl:message>
+  <wsdl:message name='Fault'>
+    <wsdl:part name='parameters' element='wx:faultCondition' />
+  </wsdl:message>
+
+
+  <wsdl:portType name='DataService' wsp:PolicyURIs='#UsernameToken'>
+    <wsdl:operation name='Get'>
+      <wsdl:input message='tns:Request' />
+      <wsdl:output message='tns:Response' />
+      <wsdl:fault name='Fault' message='tns:Fault' />
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+  <wsdl:binding name='Soap12Interface' type='tns:DataService'>
+    <wsdl11-soap12:binding transport='http://schemas.xmlsoap.org/soap/http' style='document' />
+    <wsdl:operation name='Get'>
+      <wsdl11-soap12:operation soapAction='http://weather.telventdtn.com/soap-2.3/doc/#Get' />
+      <wsdl:input>
+        <wsdl11-soap12:body use='literal' />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdl11-soap12:body use='literal' />
+      </wsdl:output>
+      <wsdl:fault name='Fault'>
+      	<wsdl11-soap12:fault use='literal' />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name='MxVision_WeatherSentry'>
+    <wsdl:port name='Soap12Endpoint' binding='tns:Soap12Interface'>
+      <wsdl11-soap12:address location='http://weather.telventdtn.com/soap-2.3/services/TDTNWeatherDataService/' />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
+

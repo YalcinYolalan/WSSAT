@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.wstest.com/WebServices/ExternalWSDL" elementFormDefault="qualified" targetNamespace="http://www.wstest.com/WebServices/ExternalWSDL" id="schema1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.wstest.com/DataTypes" />
+  <xs:element name="HelloWorld">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="types" type="tns:ArrayOfCompType" />
+        <xs:element minOccurs="0" maxOccurs="1" xmlns:q1="http://www.wstest.com/DataTypes" ref="q1:books" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfCompType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompType" nillable="true" type="tns:CompType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ids" type="tns:ArrayOfInt" />
+      <xs:element minOccurs="0" maxOccurs="1" name="param1" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfInt">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelloWorldResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" xmlns:q2="http://www.wstest.com/DataTypes" ref="q2:HelloWorldResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

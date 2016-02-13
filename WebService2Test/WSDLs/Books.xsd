@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.wstest.com/DataTypes" elementFormDefault="qualified" targetNamespace="http://www.wstest.com/DataTypes" id="schema2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="books" type="tns:Books" />
+  <xs:complexType name="Books">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Book">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Title" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Author" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="PublishDate" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelloWorldResult" type="tns:Books" />
+</xs:schema>

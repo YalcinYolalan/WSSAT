@@ -1,0 +1,738 @@
+13.02.2016 00:49:41 ==> Scan Started: 13.02.2016 00:49:41
+13.02.2016 00:49:41 ==> WSDL Address: http://www.wstest.com/Sqli.asmx?WSDL
+13.02.2016 00:49:41 ==> Parsing WSDL...
+13.02.2016 00:49:41 ==> Static Analysis Started
+13.02.2016 00:49:41 ==>    Testing: Weak XML Schema: Unbounded Occurrences
+13.02.2016 00:49:41 ==>    Testing: Weak XML Schema: Undefined Namespace
+13.02.2016 00:49:41 ==>    Testing: Weak WS-SecurityPolicy: Insecure Transport
+13.02.2016 00:49:41 ==>    Testing: Weak WS-SecurityPolicy: Insufficient Supporting Token Protection
+13.02.2016 00:49:41 ==>    Testing: Weak WS-SecurityPolicy: Tokens Not Protected
+13.02.2016 00:49:41 ==> Static Analysis Finished
+13.02.2016 00:49:41 ==> Getting Methods...
+13.02.2016 00:49:41 ==>  Vulnerability Found - SSL Not Used: http
+13.02.2016 00:49:41 ==> Method: SQLInjectMe1
+13.02.2016 00:49:41 ==>    Testing: Unauthenticated Service Method
+13.02.2016 00:49:41 ==>    Parameter Count: 2
+13.02.2016 00:49:41 ==>    id - string:A
+13.02.2016 00:49:41 ==>    x - int:0
+13.02.2016 00:49:55 ==>    Auth Vulnerability Found: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20 - status code is : 200
+13.02.2016 00:49:55 ==>    Testing: Error Based SQL Injection
+13.02.2016 00:49:55 ==>    Parameter Count: 2
+13.02.2016 00:49:55 ==>    x - int:0
+13.02.2016 00:50:10 ==>    StatusCode: 200
+13.02.2016 00:50:10 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:10 ==>    Error Based SQL Injection Vulnerability Found: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20 - Response Text Contains: System.Data.SqlClient.SqlException
+13.02.2016 00:50:10 ==>    id - string:A
+13.02.2016 00:50:10 ==>    StatusCode: 200
+13.02.2016 00:50:10 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:10 ==>    Error Based SQL Injection Vulnerability Found: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20 - Response Text Contains: System.Data.SqlClient.SqlException
+13.02.2016 00:50:10 ==>    Testing: Cross Site Scripting
+13.02.2016 00:50:10 ==>    Parameter Count: 2
+13.02.2016 00:50:10 ==>    x - int:0
+13.02.2016 00:50:11 ==>    StatusCode: 200
+13.02.2016 00:50:11 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:11 ==>    x - int:0
+13.02.2016 00:50:11 ==>    StatusCode: 200
+13.02.2016 00:50:11 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:11 ==>    x - int:0
+13.02.2016 00:50:11 ==>    StatusCode: 200
+13.02.2016 00:50:11 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:11 ==>    id - string:A
+13.02.2016 00:50:12 ==>    StatusCode: 200
+13.02.2016 00:50:12 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:12 ==>    id - string:A
+13.02.2016 00:50:12 ==>    StatusCode: 200
+13.02.2016 00:50:12 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:12 ==>    id - string:A
+13.02.2016 00:50:13 ==>    StatusCode: 200
+13.02.2016 00:50:13 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:13 ==>    Testing: XML Bomb
+13.02.2016 00:50:13 ==>    Parameter Count: 2
+13.02.2016 00:50:13 ==>    x - int:0
+13.02.2016 00:50:13 ==>    StatusCode: 200
+13.02.2016 00:50:13 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:13 ==>    x - int:0
+13.02.2016 00:50:14 ==>    StatusCode: 200
+13.02.2016 00:50:14 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:14 ==>    id - string:A
+13.02.2016 00:50:14 ==>    StatusCode: 200
+13.02.2016 00:50:14 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:14 ==>    id - string:A
+13.02.2016 00:50:14 ==>    StatusCode: 200
+13.02.2016 00:50:14 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:15 ==>    Testing: External Entity Attack - XXE
+13.02.2016 00:50:15 ==>    Parameter Count: 2
+13.02.2016 00:50:15 ==>    x - int:0
+13.02.2016 00:50:29 ==>    StatusCode: 200
+13.02.2016 00:50:29 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:29 ==>    x - int:0
+13.02.2016 00:50:43 ==>    StatusCode: 200
+13.02.2016 00:50:43 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:43 ==>    x - int:0
+13.02.2016 00:50:44 ==>    StatusCode: 200
+13.02.2016 00:50:44 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:44 ==>    x - int:0
+13.02.2016 00:50:44 ==>    StatusCode: 200
+13.02.2016 00:50:44 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:44 ==>    x - int:0
+13.02.2016 00:50:45 ==>    StatusCode: 200
+13.02.2016 00:50:45 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:45 ==>    id - string:A
+13.02.2016 00:50:45 ==>    StatusCode: 200
+13.02.2016 00:50:45 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:45 ==>    id - string:A
+13.02.2016 00:50:46 ==>    StatusCode: 200
+13.02.2016 00:50:46 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:46 ==>    id - string:A
+13.02.2016 00:50:46 ==>    StatusCode: 200
+13.02.2016 00:50:46 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:46 ==>    id - string:A
+13.02.2016 00:50:46 ==>    StatusCode: 200
+13.02.2016 00:50:46 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:46 ==>    id - string:A
+13.02.2016 00:50:47 ==>    StatusCode: 200
+13.02.2016 00:50:47 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:47 ==>    Testing: XPATH Injection
+13.02.2016 00:50:47 ==>    Parameter Count: 2
+13.02.2016 00:50:47 ==>    x - int:0
+13.02.2016 00:50:47 ==>    StatusCode: 200
+13.02.2016 00:50:47 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:47 ==>    x - int:0
+13.02.2016 00:50:48 ==>    StatusCode: 200
+13.02.2016 00:50:48 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:48 ==>    x - int:0
+13.02.2016 00:50:48 ==>    StatusCode: 200
+13.02.2016 00:50:48 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:50:48 ==>    x - int:0
+13.02.2016 00:51:03 ==>    StatusCode: 200
+13.02.2016 00:51:03 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:51:03 ==>    id - string:A
+13.02.2016 00:51:17 ==>    StatusCode: 200
+13.02.2016 00:51:17 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:51:17 ==>    id - string:A
+13.02.2016 00:51:17 ==>    StatusCode: 200
+13.02.2016 00:51:18 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:51:18 ==>    id - string:A
+13.02.2016 00:51:18 ==>    StatusCode: 200
+13.02.2016 00:51:18 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:51:18 ==>    id - string:A
+13.02.2016 00:51:18 ==>    StatusCode: 200
+13.02.2016 00:51:18 ==>    Result: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at WebService2Test.Helpers.DBHelper..ctor() in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Helpers\DBHelper.cs:line 34
+   at WebService2Test.Sqli.SQLInjectMe1(String id, Int32 x) in c:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\Sqli.asmx.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+13.02.2016 00:51:18 ==> WSDL Address: http://www.wstest.com/WeakXMLTest.asmx?WSDL
+13.02.2016 00:51:18 ==> Parsing WSDL...
+13.02.2016 00:51:18 ==> Static Analysis Started
+13.02.2016 00:51:18 ==>    Testing: Weak XML Schema: Unbounded Occurrences
+13.02.2016 00:51:18 ==>    Weak XML Schema: Unbounded Occurrences Vulnerability Found: <s:element minOccurs="0" maxOccurs="unbounded" name="CompType" nillable="true" type="tns:CompType" xmlns:s="http://www.w3.org/2001/XMLSchema" />
+<s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" xmlns:s="http://www.w3.org/2001/XMLSchema" />
+<s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" xmlns:s="http://www.w3.org/2001/XMLSchema" />
+<s:element minOccurs="0" maxOccurs="unbounded" name="Book" xmlns:s="http://www.w3.org/2001/XMLSchema">
+  <s:complexType>
+    <s:sequence>
+      <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+      <s:element minOccurs="0" maxOccurs="1" name="Author" type="s:string" />
+      <s:element minOccurs="0" maxOccurs="1" name="PublishDate" type="s:string" />
+    </s:sequence>
+  </s:complexType>
+</s:element>
+
+13.02.2016 00:51:18 ==>    Testing: Weak XML Schema: Undefined Namespace
+13.02.2016 00:51:18 ==>    Testing: Weak WS-SecurityPolicy: Insecure Transport
+13.02.2016 00:51:19 ==>    Testing: Weak WS-SecurityPolicy: Insufficient Supporting Token Protection
+13.02.2016 00:51:19 ==>    Testing: Weak WS-SecurityPolicy: Tokens Not Protected
+13.02.2016 00:51:19 ==> Static Analysis Finished
+13.02.2016 00:51:19 ==> Getting Methods...
+13.02.2016 00:51:19 ==>  Vulnerability Found - SSL Not Used: http
+13.02.2016 00:51:19 ==> Method: MethodComplexType
+13.02.2016 00:51:19 ==>    Testing: Unauthenticated Service Method
+13.02.2016 00:51:19 ==>    Parameter Count: 3
+13.02.2016 00:51:19 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:19 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:19 ==>     - :A
+13.02.2016 00:51:19 ==>    Auth Vulnerability Found:  - status code is : 400
+13.02.2016 00:51:19 ==>    Testing: Error Based SQL Injection
+13.02.2016 00:51:19 ==>    Parameter Count: 3
+13.02.2016 00:51:19 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:19 ==>     - :A
+13.02.2016 00:51:20 ==>    StatusCode: 400
+13.02.2016 00:51:20 ==>    Result: 
+13.02.2016 00:51:20 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:20 ==>     - :A
+13.02.2016 00:51:20 ==>    StatusCode: 400
+13.02.2016 00:51:20 ==>    Result: 
+13.02.2016 00:51:20 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:20 ==>     - :A
+13.02.2016 00:51:20 ==>    StatusCode: 400
+13.02.2016 00:51:20 ==>    Result: 
+13.02.2016 00:51:20 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:20 ==>     - :A
+13.02.2016 00:51:21 ==>    StatusCode: 400
+13.02.2016 00:51:21 ==>    Result: 
+13.02.2016 00:51:21 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:21 ==>     - :A
+13.02.2016 00:51:21 ==>    StatusCode: 400
+13.02.2016 00:51:21 ==>    Result: 
+13.02.2016 00:51:21 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:21 ==>     - :A
+13.02.2016 00:51:22 ==>    StatusCode: 400
+13.02.2016 00:51:22 ==>    Result: 
+13.02.2016 00:51:22 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:22 ==>     - :A
+13.02.2016 00:51:22 ==>    StatusCode: 400
+13.02.2016 00:51:22 ==>    Result: 
+13.02.2016 00:51:22 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:22 ==>     - :A
+13.02.2016 00:51:23 ==>    StatusCode: 400
+13.02.2016 00:51:23 ==>    Result: 
+13.02.2016 00:51:23 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:23 ==>     - :A
+13.02.2016 00:51:23 ==>    StatusCode: 400
+13.02.2016 00:51:23 ==>    Result: 
+13.02.2016 00:51:23 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:23 ==>     - :A
+13.02.2016 00:51:24 ==>    StatusCode: 400
+13.02.2016 00:51:24 ==>    Result: 
+13.02.2016 00:51:24 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:24 ==>     - :A
+13.02.2016 00:51:24 ==>    StatusCode: 400
+13.02.2016 00:51:24 ==>    Result: 
+13.02.2016 00:51:24 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:24 ==>     - :A
+13.02.2016 00:51:25 ==>    StatusCode: 400
+13.02.2016 00:51:25 ==>    Result: 
+13.02.2016 00:51:25 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:25 ==>     - :A
+13.02.2016 00:51:25 ==>    StatusCode: 400
+13.02.2016 00:51:25 ==>    Result: 
+13.02.2016 00:51:25 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:25 ==>     - :A
+13.02.2016 00:51:25 ==>    StatusCode: 400
+13.02.2016 00:51:25 ==>    Result: 
+13.02.2016 00:51:25 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:25 ==>     - :A
+13.02.2016 00:51:26 ==>    StatusCode: 400
+13.02.2016 00:51:26 ==>    Result: 
+13.02.2016 00:51:26 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:26 ==>     - :A
+13.02.2016 00:51:26 ==>    StatusCode: 400
+13.02.2016 00:51:26 ==>    Result: 
+13.02.2016 00:51:26 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:26 ==>     - :A
+13.02.2016 00:51:27 ==>    StatusCode: 400
+13.02.2016 00:51:27 ==>    Result: 
+13.02.2016 00:51:27 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:27 ==>     - :A
+13.02.2016 00:51:27 ==>    StatusCode: 400
+13.02.2016 00:51:27 ==>    Result: 
+13.02.2016 00:51:27 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:27 ==>     - :A
+13.02.2016 00:51:28 ==>    StatusCode: 400
+13.02.2016 00:51:28 ==>    Result: 
+13.02.2016 00:51:28 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:28 ==>     - :A
+13.02.2016 00:51:28 ==>    StatusCode: 400
+13.02.2016 00:51:28 ==>    Result: 
+13.02.2016 00:51:28 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:28 ==>     - :A
+13.02.2016 00:51:29 ==>    StatusCode: 400
+13.02.2016 00:51:29 ==>    Result: 
+13.02.2016 00:51:29 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:29 ==>     - :A
+13.02.2016 00:51:29 ==>    StatusCode: 400
+13.02.2016 00:51:29 ==>    Result: 
+13.02.2016 00:51:29 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:29 ==>     - :A
+13.02.2016 00:51:30 ==>    StatusCode: 400
+13.02.2016 00:51:30 ==>    Result: 
+13.02.2016 00:51:30 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:30 ==>     - :A
+13.02.2016 00:51:30 ==>    StatusCode: 400
+13.02.2016 00:51:30 ==>    Result: 
+13.02.2016 00:51:30 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:30 ==>     - :A
+13.02.2016 00:51:30 ==>    StatusCode: 400
+13.02.2016 00:51:30 ==>    Result: 
+13.02.2016 00:51:30 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:30 ==>     - :A
+13.02.2016 00:51:31 ==>    StatusCode: 400
+13.02.2016 00:51:31 ==>    Result: 
+13.02.2016 00:51:31 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:31 ==>     - :A
+13.02.2016 00:51:31 ==>    StatusCode: 400
+13.02.2016 00:51:31 ==>    Result: 
+13.02.2016 00:51:31 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:31 ==>     - :A
+13.02.2016 00:51:32 ==>    StatusCode: 400
+13.02.2016 00:51:32 ==>    Result: 
+13.02.2016 00:51:32 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:32 ==>     - :A
+13.02.2016 00:51:32 ==>    StatusCode: 400
+13.02.2016 00:51:32 ==>    Result: 
+13.02.2016 00:51:32 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:32 ==>     - :A
+13.02.2016 00:51:33 ==>    StatusCode: 400
+13.02.2016 00:51:33 ==>    Result: 
+13.02.2016 00:51:33 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:33 ==>     - :A
+13.02.2016 00:51:33 ==>    StatusCode: 400
+13.02.2016 00:51:33 ==>    Result: 
+13.02.2016 00:51:33 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:33 ==>     - :A
+13.02.2016 00:51:34 ==>    StatusCode: 400
+13.02.2016 00:51:34 ==>    Result: 
+13.02.2016 00:51:34 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:34 ==>     - :A
+13.02.2016 00:51:34 ==>    StatusCode: 400
+13.02.2016 00:51:34 ==>    Result: 
+13.02.2016 00:51:34 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:34 ==>     - :A
+13.02.2016 00:51:35 ==>    StatusCode: 400
+13.02.2016 00:51:35 ==>    Result: 
+13.02.2016 00:51:35 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:35 ==>     - :A
+13.02.2016 00:51:35 ==>    StatusCode: 400
+13.02.2016 00:51:35 ==>    Result: 
+13.02.2016 00:51:35 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:35 ==>     - :A
+13.02.2016 00:51:35 ==>    StatusCode: 400
+13.02.2016 00:51:35 ==>    Result: 
+13.02.2016 00:51:35 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:35 ==>     - :A
+13.02.2016 00:51:36 ==>    StatusCode: 400
+13.02.2016 00:51:36 ==>    Result: 
+13.02.2016 00:51:36 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:36 ==>     - :A
+13.02.2016 00:51:36 ==>    StatusCode: 400
+13.02.2016 00:51:36 ==>    Result: 
+13.02.2016 00:51:36 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:36 ==>     - :A
+13.02.2016 00:51:37 ==>    StatusCode: 400
+13.02.2016 00:51:37 ==>    Result: 
+13.02.2016 00:51:37 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:37 ==>     - :A
+13.02.2016 00:51:37 ==>    StatusCode: 400
+13.02.2016 00:51:37 ==>    Result: 
+13.02.2016 00:51:37 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:37 ==>     - :A
+13.02.2016 00:51:38 ==>    StatusCode: 400
+13.02.2016 00:51:38 ==>    Result: 
+13.02.2016 00:51:38 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:38 ==>     - :A
+13.02.2016 00:51:38 ==>    StatusCode: 400
+13.02.2016 00:51:38 ==>    Result: 
+13.02.2016 00:51:38 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:38 ==>     - :A
+13.02.2016 00:51:39 ==>    StatusCode: 400
+13.02.2016 00:51:39 ==>    Result: 
+13.02.2016 00:51:39 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:39 ==>     - :A
+13.02.2016 00:51:39 ==>    StatusCode: 400
+13.02.2016 00:51:39 ==>    Result: 
+13.02.2016 00:51:39 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:39 ==>     - :A
+13.02.2016 00:51:39 ==>    StatusCode: 400
+13.02.2016 00:51:39 ==>    Result: 
+13.02.2016 00:51:39 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:39 ==>     - :A
+13.02.2016 00:51:40 ==>    StatusCode: 400
+13.02.2016 00:51:40 ==>    Result: 
+13.02.2016 00:51:40 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:40 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:40 ==>    StatusCode: 400
+13.02.2016 00:51:40 ==>    Result: 
+13.02.2016 00:51:40 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:40 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:41 ==>    StatusCode: 400
+13.02.2016 00:51:41 ==>    Result: 
+13.02.2016 00:51:41 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:41 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:41 ==>    StatusCode: 400
+13.02.2016 00:51:41 ==>    Result: 
+13.02.2016 00:51:41 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:41 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:42 ==>    StatusCode: 400
+13.02.2016 00:51:42 ==>    Result: 
+13.02.2016 00:51:42 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:42 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:42 ==>    StatusCode: 400
+13.02.2016 00:51:42 ==>    Result: 
+13.02.2016 00:51:42 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:42 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:43 ==>    StatusCode: 400
+13.02.2016 00:51:43 ==>    Result: 
+13.02.2016 00:51:43 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:43 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:43 ==>    StatusCode: 400
+13.02.2016 00:51:43 ==>    Result: 
+13.02.2016 00:51:43 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:43 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:44 ==>    StatusCode: 400
+13.02.2016 00:51:44 ==>    Result: 
+13.02.2016 00:51:44 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:44 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:44 ==>    StatusCode: 400
+13.02.2016 00:51:44 ==>    Result: 
+13.02.2016 00:51:44 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:44 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:44 ==>    StatusCode: 400
+13.02.2016 00:51:44 ==>    Result: 
+13.02.2016 00:51:44 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:44 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:45 ==>    StatusCode: 400
+13.02.2016 00:51:45 ==>    Result: 
+13.02.2016 00:51:45 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:45 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:45 ==>    StatusCode: 400
+13.02.2016 00:51:45 ==>    Result: 
+13.02.2016 00:51:45 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:45 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:46 ==>    StatusCode: 400
+13.02.2016 00:51:46 ==>    Result: 
+13.02.2016 00:51:46 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:46 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:46 ==>    StatusCode: 400
+13.02.2016 00:51:46 ==>    Result: 
+13.02.2016 00:51:46 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:46 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:47 ==>    StatusCode: 400
+13.02.2016 00:51:47 ==>    Result: 
+13.02.2016 00:51:47 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:47 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:47 ==>    StatusCode: 400
+13.02.2016 00:51:47 ==>    Result: 
+13.02.2016 00:51:47 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:47 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:48 ==>    StatusCode: 400
+13.02.2016 00:51:48 ==>    Result: 
+13.02.2016 00:51:48 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:48 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:48 ==>    StatusCode: 400
+13.02.2016 00:51:48 ==>    Result: 
+13.02.2016 00:51:48 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:48 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:49 ==>    StatusCode: 400
+13.02.2016 00:51:49 ==>    Result: 
+13.02.2016 00:51:49 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:49 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:49 ==>    StatusCode: 400
+13.02.2016 00:51:49 ==>    Result: 
+13.02.2016 00:51:49 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:49 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:49 ==>    StatusCode: 400
+13.02.2016 00:51:49 ==>    Result: 
+13.02.2016 00:51:49 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:49 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:50 ==>    StatusCode: 400
+13.02.2016 00:51:50 ==>    Result: 
+13.02.2016 00:51:50 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:50 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:50 ==>    StatusCode: 400
+13.02.2016 00:51:50 ==>    Result: 
+13.02.2016 00:51:50 ==>    Testing: Cross Site Scripting
+13.02.2016 00:51:50 ==>    Parameter Count: 3
+13.02.2016 00:51:50 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:50 ==>     - :A
+13.02.2016 00:51:51 ==>    StatusCode: 400
+13.02.2016 00:51:51 ==>    Result: 
+13.02.2016 00:51:51 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:51 ==>     - :A
+13.02.2016 00:51:51 ==>    StatusCode: 400
+13.02.2016 00:51:51 ==>    Result: 
+13.02.2016 00:51:51 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:51 ==>     - :A
+13.02.2016 00:51:52 ==>    StatusCode: 400
+13.02.2016 00:51:52 ==>    Result: 
+13.02.2016 00:51:52 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:52 ==>     - :A
+13.02.2016 00:51:52 ==>    StatusCode: 400
+13.02.2016 00:51:52 ==>    Result: 
+13.02.2016 00:51:52 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:52 ==>     - :A
+13.02.2016 00:51:53 ==>    StatusCode: 400
+13.02.2016 00:51:53 ==>    Result: 
+13.02.2016 00:51:53 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:53 ==>     - :A
+13.02.2016 00:51:53 ==>    StatusCode: 400
+13.02.2016 00:51:53 ==>    Result: 
+13.02.2016 00:51:53 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:53 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:53 ==>    StatusCode: 400
+13.02.2016 00:51:53 ==>    Result: 
+13.02.2016 00:51:53 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:53 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:54 ==>    StatusCode: 400
+13.02.2016 00:51:54 ==>    Result: 
+13.02.2016 00:51:54 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:54 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:54 ==>    StatusCode: 400
+13.02.2016 00:51:54 ==>    Result: 
+13.02.2016 00:51:54 ==>    Testing: XML Bomb
+13.02.2016 00:51:54 ==>    Parameter Count: 3
+13.02.2016 00:51:54 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:54 ==>     - :A
+13.02.2016 00:51:55 ==>    StatusCode: 400
+13.02.2016 00:51:55 ==>    Result: 
+13.02.2016 00:51:55 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:55 ==>     - :A
+13.02.2016 00:51:55 ==>    StatusCode: 400
+13.02.2016 00:51:55 ==>    Result: 
+13.02.2016 00:51:55 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:55 ==>     - :A
+13.02.2016 00:51:56 ==>    StatusCode: 400
+13.02.2016 00:51:56 ==>    Result: 
+13.02.2016 00:51:56 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:56 ==>     - :A
+13.02.2016 00:51:56 ==>    StatusCode: 400
+13.02.2016 00:51:56 ==>    Result: 
+13.02.2016 00:51:56 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:56 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:57 ==>    StatusCode: 400
+13.02.2016 00:51:57 ==>    Result: 
+13.02.2016 00:51:57 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:57 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:57 ==>    StatusCode: 400
+13.02.2016 00:51:57 ==>    Result: 
+13.02.2016 00:51:57 ==>    Testing: External Entity Attack - XXE
+13.02.2016 00:51:57 ==>    Parameter Count: 3
+13.02.2016 00:51:57 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:57 ==>     - :A
+13.02.2016 00:51:58 ==>    StatusCode: 400
+13.02.2016 00:51:58 ==>    Result: 
+13.02.2016 00:51:58 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:58 ==>     - :A
+13.02.2016 00:51:58 ==>    StatusCode: 400
+13.02.2016 00:51:58 ==>    Result: 
+13.02.2016 00:51:58 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:58 ==>     - :A
+13.02.2016 00:51:58 ==>    StatusCode: 400
+13.02.2016 00:51:58 ==>    Result: 
+13.02.2016 00:51:58 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:58 ==>     - :A
+13.02.2016 00:51:59 ==>    StatusCode: 400
+13.02.2016 00:51:59 ==>    Result: 
+13.02.2016 00:51:59 ==>    tmp - ArrayOfString:A
+13.02.2016 00:51:59 ==>     - :A
+13.02.2016 00:51:59 ==>    StatusCode: 400
+13.02.2016 00:51:59 ==>    Result: 
+13.02.2016 00:51:59 ==>    types - ArrayOfCompType:A
+13.02.2016 00:51:59 ==>     - :A
+13.02.2016 00:52:00 ==>    StatusCode: 400
+13.02.2016 00:52:00 ==>    Result: 
+13.02.2016 00:52:00 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:00 ==>     - :A
+13.02.2016 00:52:00 ==>    StatusCode: 400
+13.02.2016 00:52:00 ==>    Result: 
+13.02.2016 00:52:00 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:00 ==>     - :A
+13.02.2016 00:52:01 ==>    StatusCode: 400
+13.02.2016 00:52:01 ==>    Result: 
+13.02.2016 00:52:01 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:01 ==>     - :A
+13.02.2016 00:52:01 ==>    StatusCode: 400
+13.02.2016 00:52:01 ==>    Result: 
+13.02.2016 00:52:01 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:01 ==>     - :A
+13.02.2016 00:52:01 ==>    StatusCode: 400
+13.02.2016 00:52:01 ==>    Result: 
+13.02.2016 00:52:02 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:02 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:02 ==>    StatusCode: 400
+13.02.2016 00:52:02 ==>    Result: 
+13.02.2016 00:52:02 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:02 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:02 ==>    StatusCode: 400
+13.02.2016 00:52:02 ==>    Result: 
+13.02.2016 00:52:02 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:02 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:03 ==>    StatusCode: 400
+13.02.2016 00:52:03 ==>    Result: 
+13.02.2016 00:52:03 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:03 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:03 ==>    StatusCode: 400
+13.02.2016 00:52:03 ==>    Result: 
+13.02.2016 00:52:03 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:03 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:04 ==>    StatusCode: 400
+13.02.2016 00:52:04 ==>    Result: 
+13.02.2016 00:52:04 ==>    Testing: XPATH Injection
+13.02.2016 00:52:04 ==>    Parameter Count: 3
+13.02.2016 00:52:04 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:04 ==>     - :A
+13.02.2016 00:52:04 ==>    StatusCode: 400
+13.02.2016 00:52:04 ==>    Result: 
+13.02.2016 00:52:04 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:04 ==>     - :A
+13.02.2016 00:52:05 ==>    StatusCode: 400
+13.02.2016 00:52:05 ==>    Result: 
+13.02.2016 00:52:05 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:05 ==>     - :A
+13.02.2016 00:52:05 ==>    StatusCode: 400
+13.02.2016 00:52:05 ==>    Result: 
+13.02.2016 00:52:05 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:05 ==>     - :A
+13.02.2016 00:52:05 ==>    StatusCode: 400
+13.02.2016 00:52:05 ==>    Result: 
+13.02.2016 00:52:05 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:05 ==>     - :A
+13.02.2016 00:52:06 ==>    StatusCode: 400
+13.02.2016 00:52:06 ==>    Result: 
+13.02.2016 00:52:06 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:06 ==>     - :A
+13.02.2016 00:52:06 ==>    StatusCode: 400
+13.02.2016 00:52:06 ==>    Result: 
+13.02.2016 00:52:06 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:06 ==>     - :A
+13.02.2016 00:52:07 ==>    StatusCode: 400
+13.02.2016 00:52:07 ==>    Result: 
+13.02.2016 00:52:07 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:07 ==>     - :A
+13.02.2016 00:52:07 ==>    StatusCode: 400
+13.02.2016 00:52:07 ==>    Result: 
+13.02.2016 00:52:07 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:07 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:08 ==>    StatusCode: 400
+13.02.2016 00:52:08 ==>    Result: 
+13.02.2016 00:52:08 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:08 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:08 ==>    StatusCode: 400
+13.02.2016 00:52:08 ==>    Result: 
+13.02.2016 00:52:08 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:08 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:09 ==>    StatusCode: 400
+13.02.2016 00:52:09 ==>    Result: 
+13.02.2016 00:52:09 ==>    types - ArrayOfCompType:A
+13.02.2016 00:52:09 ==>    tmp - ArrayOfString:A
+13.02.2016 00:52:09 ==>    StatusCode: 400
+13.02.2016 00:52:09 ==>    Result: 
+13.02.2016 00:52:09 ==> Scan Finished: 13.02.2016 00:52:09

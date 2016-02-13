@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:i0="http://www.wstest.com/WebServices/ExternalWSDL" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.wstest.com/WebServices" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.wstest.com/WebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://www.wstest.com/WebServices/ExternalWSDL" location="http://www.wstest.com/WeakXMLTest2.asmx?wsdl=wsdl1" />
+  <wsdl:types>
+    <s:schema targetNamespace="http://www.wstest.com/WebServices">
+      <s:import schemaLocation="CompType.xsd" namespace="http://www.wstest.com/WebServices/ExternalWSDL" />
+      <s:import schemaLocation="Books.xsd" namespace="http://www.wstest.com/DataTypes" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:service name="WeakXMLTest2">
+    <wsdl:port name="AYS20Aug2002" binding="i0:AYS20Aug2002">
+      <soap:address location="http://www.wstest.com/WeakXMLTest2.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AYS20Aug20021" binding="i0:AYS20Aug20021">
+      <soap12:address location="http://www.wstest.com/WeakXMLTest2.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
