@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="51136">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="52160">
       <assemblyIdentity name="WSSAT" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mvhsVAW60Ock8vLR4AcbxF8h+sW1WuHV/pYCDkv0GGI=</dsig:DigestValue>
+        <dsig:DigestValue>SZ2NBkvMFIxQtmpiUd1VuwdqlaViZ+kftCKcfupQmlw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -125,13 +125,13 @@
       <dsig:DigestValue>WAsEowJFD0mS2nHm88hVOZGkggYIvjqQf0UtCOKQpFs=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="wsdls.txt" size="578">
+  <file name="wsdls.txt" size="247">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Qisl8VAGwSZU4vRcknVzJKEQDuyiqxltKjR1TEQVs6s=</dsig:DigestValue>
+      <dsig:DigestValue>ZAXmcWM42sPMMKhwxdXIRVdTxod/tKkEAWfcLwb5OPI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="WSSAT.exe.config" size="187">
@@ -152,13 +152,13 @@
       <dsig:DigestValue>VhhxTJz+cfbJAy5ZxKYqnTk9F9Lmwms4sS4+J13FDJc=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="XML\Vulnerabilities.xml" size="10148" writeableType="applicationData">
+  <file name="XML\Vulnerabilities.xml" size="10769" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>EzhYBuvvP0uVOpwZefkXcHxeEYe8c/j3TsRFtfVtNtE=</dsig:DigestValue>
+      <dsig:DigestValue>NmkXVCOgKxDyunSTByYiBYe6aWmNXHtLe+C5Aqd2PAk=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

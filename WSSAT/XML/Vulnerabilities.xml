@@ -262,4 +262,18 @@
     </response>
     <statusCode></statusCode>
   </Vulnerability>
+  <Vulnerability>
+    <id>-1</id>
+    <title>Could not establish trust relationship for the SSL/TLS secure channel.</title>
+    <description>
+      Problem with this web service's SSL security certificate. The remote certificate is invalid according to the validation procedure (maybe self-signed SSL Certificate).
+    </description>
+    <link>https://www.sans.org/reading-room/whitepapers/analyst/critical-security-controls-guidelines-ssl-tls-management-35995</link>
+    <severity>High</severity>
+    <request>
+    </request>
+    <response>
+    </response>
+    <statusCode></statusCode>
+  </Vulnerability>
 </Vulnerabilities>

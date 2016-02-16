@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Services.Description;
@@ -25,44 +27,54 @@ namespace WSSAT.BusinessLayer
         public string TargetNameSpace { set; get; }
         public XDocument rawWSDL;
 
-        public Parser(WSDescriber wsDesc)
+        public Parser(WSDescriber wsDesc, ref bool untrustedSSLSecureChannel)
         {
-            //XmlReader reader = new XmlTextReader(wsDesc.WSDLAddress);
+            HttpWebRequest wr = GetHttpWebReq(wsDesc);
 
-            //XmlTextReader reader = new XmlTextReader(wsDesc.WSDLAddress);
+            HttpWebResponse wres = null;
+            try
+            {
+                wres = (HttpWebResponse)wr.GetResponse();
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.TrustFailure)
+                {
+                    ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
-            //if (!string.IsNullOrEmpty(wsDesc.Username))
-            //{
-            //    CredentialCache myCache = new CredentialCache();
-            //    NetworkCredential myCred = new NetworkCredential(wsDesc.Username, wsDesc.Password);
-            //    myCache.Add(new Uri(wsDesc.WSUri.Scheme + "://" + wsDesc.WSUri.Host + "/"), "Basic", myCred);
+                    wr = GetHttpWebReq(wsDesc);
+                    wres = (HttpWebResponse)wr.GetResponse();
 
-            //    XmlUrlResolver resolver = new XmlUrlResolver();
-            //    resolver.Credentials = myCache;
+                    untrustedSSLSecureChannel = true;
+                }
+            }
 
-            //    reader.XmlResolver = resolver;
-            //}
+            if (wres != null)
+            {
+                StreamReader streamReader = new StreamReader(wres.GetResponseStream());
 
-            //serviceDescription = ServiceDescription.Read(reader);
+                rawWSDL = XDocument.Parse(streamReader.ReadToEnd());
 
+                TextReader myTextReader = new StringReader(rawWSDL.ToString());
+                serviceDescription = ServiceDescription.Read(myTextReader);
+
+                TargetNameSpace = serviceDescription.TargetNamespace;
+                bindColl = serviceDescription.Bindings;
+                portTypColl = serviceDescription.PortTypes;
+                msgColl = serviceDescription.Messages;
+                types = serviceDescription.Types;
+                schemas = types.Schemas;
+            }
+        }
+
+        private HttpWebRequest GetHttpWebReq(WSDescriber wsDesc)
+        {
             HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(wsDesc.WSDLAddress);
             if (!string.IsNullOrEmpty(wsDesc.Username))
             {
                 wr.Credentials = new NetworkCredential(wsDesc.Username, wsDesc.Password);
             }
-            HttpWebResponse wres = (HttpWebResponse)wr.GetResponse();
-            StreamReader streamReader = new StreamReader(wres.GetResponseStream());
-            rawWSDL = XDocument.Parse(streamReader.ReadToEnd());
-
-            TextReader myTextReader = new StringReader(rawWSDL.ToString());
-            serviceDescription = ServiceDescription.Read(myTextReader);
-
-            TargetNameSpace = serviceDescription.TargetNamespace;
-            bindColl = serviceDescription.Bindings;
-            portTypColl = serviceDescription.PortTypes;
-            msgColl = serviceDescription.Messages;
-            types = serviceDescription.Types;
-            schemas = types.Schemas;
+            return wr;
         }
 
         public List<WSOperation> GetOperations()
@@ -77,8 +89,6 @@ namespace WSSAT.BusinessLayer
                     string portName = port.Name;
                     string binding = port.Binding.Name;
                     Binding bind = bindColl[binding];
-                    //SoapBinding bind = (SoapBinding)bindColl[binding];
-                    //bind.Transport 
 
                     if (bind != null)
                     {
@@ -161,11 +171,6 @@ namespace WSSAT.BusinessLayer
         {
             string result = string.Empty;
 
-            //if (rawWSDL.ToString().Trim().ToLower().Contains("maxoccurs=\"unbounded\""))
-            //{
-            //    result = "Weak XML Schema: Unbounded Occurrences";
-            //}
-
             // get xml element nodes by maxOccurs attribute value
             var elements = rawWSDL.Root
                         .DescendantsAndSelf()
@@ -175,9 +180,9 @@ namespace WSSAT.BusinessLayer
 
             if (elements != null && elements.Count() > 0)
             {
-                foreach (var x in elements.Cast<XElement>())
+                foreach (var elm in elements.Cast<XElement>())
                 {
-                    result += x.ToString() + "\r\n";
+                    result += elm.ToString() + "\r\n";
                 }
             }
 

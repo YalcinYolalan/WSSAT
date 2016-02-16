@@ -100,7 +100,8 @@ namespace WSSAT
                     Log("WSDL Address: " + wsDesc.WSDLAddress, FontStyle.Bold, true);
                     Log("Parsing WSDL...", FontStyle.Regular, true);
 
-                    Parser parser = new Parser(wsDesc);
+                    bool untrustedSSLSecureChannel = false;
+                    Parser parser = new Parser(wsDesc, ref untrustedSSLSecureChannel);
 
                     if (chkStaticScan.Checked)
                     {
@@ -138,15 +139,15 @@ namespace WSSAT
                         if (!wsDesc.WSUri.Scheme.Equals("https"))
                         {
                             Log(" Vulnerability Found - SSL Not Used, Uri Schema is " + wsDesc.WSUri.Scheme, FontStyle.Bold, true);
-                            VulnerabilityForReport sslVuln = new VulnerabilityForReport();
-                            sslVuln.Vuln = vulnerabilities.Vulnerability.Where(v => v.id == 0).FirstOrDefault();
-                            sslVuln.VulnerableMethodName = "";
-                            sslVuln.VulnerableParamName = "";
-                            sslVuln.Payload = "";
-                            sslVuln.Response = "";
-                            sslVuln.StatusCode = "";
-
-                            WSItemVulnerabilities.Vulns.Add(sslVuln);
+                            AddSSLRelatedVulnerability(WSItemVulnerabilities, 0);
+                        }
+                        else
+                        {
+                            if (untrustedSSLSecureChannel)
+                            {
+                                Log(" Vulnerability Found - Could not establish trust relationship for the SSL/TLS secure channel.", FontStyle.Bold, true);
+                                AddSSLRelatedVulnerability(WSItemVulnerabilities, -1);
+                            }
                         }
 
                         DynamicVulnerabilityScanner dynScn = new DynamicVulnerabilityScanner(this);
@@ -201,6 +202,19 @@ namespace WSSAT
             }
         }
 
+        private void AddSSLRelatedVulnerability(WSDescriberForReport WSItemVulnerabilities, int vulnId)
+        {
+            VulnerabilityForReport sslVuln = new VulnerabilityForReport();
+            sslVuln.Vuln = vulnerabilities.Vulnerability.Where(v => v.id == vulnId).FirstOrDefault();
+            sslVuln.VulnerableMethodName = "";
+            sslVuln.VulnerableParamName = "";
+            sslVuln.Payload = "";
+            sslVuln.Response = "";
+            sslVuln.StatusCode = "";
+
+            WSItemVulnerabilities.Vulns.Add(sslVuln);
+        }
+
         public void Log(string str, FontStyle fontStyle, bool displayInListView)
         {
             Logger.Log(scanDirectory + @"\Logs\", str);
@@ -223,7 +237,7 @@ namespace WSSAT
                System.Xml.Serialization.XmlSerializer(vulnerabilities.GetType());
 
             System.IO.StreamReader file =
-               new System.IO.StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + @"\XML\Vulnerabilities.xml");
+               new System.IO.StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + @"\..\..\XML\Vulnerabilities.xml");
 
             vulnerabilities = (Vulnerabilities)reader.Deserialize(file);
 
@@ -232,7 +246,7 @@ namespace WSSAT
                System.Xml.Serialization.XmlSerializer(staticVulnerabilities.GetType());
 
             file =
-               new System.IO.StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + @"\XML\StaticVulnerabilities.xml");
+               new System.IO.StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + @"\..\..\XML\StaticVulnerabilities.xml");
 
             staticVulnerabilities = (StaticVulnerabilities)reader.Deserialize(file);
 
