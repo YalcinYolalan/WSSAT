@@ -1,12 +1,6 @@
+#WSDL Address with Basic authentication username & password - Example:
 #http://www.wstestauth.com/Authentication.asmx?WSDL|wsuser|Wspass123
-http://www.wstest.com/Sqli.asmx?WSDL
+
+# WSDL Address - Example:
+#https://www.wstest.com/Sqli.asmx?WSDL
 #http://www.wstest.com/XSS.asmx?WSDL
-#http://www.wstest.com/SOAPFault.asmx?WSDL
-http://www.wstest.com/WeakXMLTest.asmx?WSDL
-#http://www.wstest.com/InsecureTransport.wsdl
-#http://www.wstest.com/InsufficientSupportingTokenProtection.wsdl
-#http://www.wstest.com/TokensNotProtected.wsdl
-#http://www.wstest.com/XMLBomb.asmx?WSDL
-#http://www.wstestauth.com/XXE.asmx?WSDL?WSDL|wsuser|Wspass123
-#http://www.wstest.com/XPATH.asmx?WSDL
-#http://www.wstest.com/NamespaceAny.wsdl
