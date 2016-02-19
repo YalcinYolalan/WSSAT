@@ -70,10 +70,16 @@ namespace WSSAT.BusinessLayer
         private HttpWebRequest GetHttpWebReq(WSDescriber wsDesc)
         {
             HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(wsDesc.WSDLAddress);
+
+            wr.Proxy = WebRequest.DefaultWebProxy;
+            wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
+            wr.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
+
             if (!string.IsNullOrEmpty(wsDesc.Username))
             {
                 wr.Credentials = new NetworkCredential(wsDesc.Username, wsDesc.Password);
             }
+
             return wr;
         }
 
