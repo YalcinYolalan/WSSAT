@@ -27,7 +27,7 @@ namespace WSSAT.BusinessLayer
         public string TargetNameSpace { set; get; }
         public XDocument rawWSDL;
 
-        public Parser(WSDescriber wsDesc, ref bool untrustedSSLSecureChannel)
+        public Parser(WSDescriber wsDesc, ref bool untrustedSSLSecureChannel, ref List<Param> respHeader)
         {
             HttpWebRequest wr = GetHttpWebReq(wsDesc);
 
@@ -51,6 +51,11 @@ namespace WSSAT.BusinessLayer
 
             if (wres != null)
             {
+                for (int i = 0; i < wres.Headers.Count; ++i)
+                {
+                    respHeader.Add(new Param() { Name = wres.Headers.Keys[i].ToLowerInvariant(), Value = wres.Headers[i].ToLowerInvariant() });
+                }
+
                 StreamReader streamReader = new StreamReader(wres.GetResponseStream());
 
                 rawWSDL = XDocument.Parse(streamReader.ReadToEnd());

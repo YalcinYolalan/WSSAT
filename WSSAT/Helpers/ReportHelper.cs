@@ -22,6 +22,7 @@ namespace WSSAT.Helpers
 
             double totalStaticVulnCount = 0;
             double totalDynamicVulnCount = 0;
+            double totalInfoVulnCount = 0;
             double totalVulnCount = 0;
 
             StringBuilder htmlVulns = new StringBuilder();
@@ -32,17 +33,21 @@ namespace WSSAT.Helpers
                 htmlVulns.Append(GetHtmlRowForWsdl(wsDesc, ref allVulns));
                 totalDynamicVulnCount += wsDesc.Vulns.Count;
                 totalStaticVulnCount += wsDesc.StaticVulns.Count;
+                totalInfoVulnCount += wsDesc.InfoVulns.Count;
             }
 
-            totalVulnCount = totalStaticVulnCount + totalDynamicVulnCount;
+            totalVulnCount = totalStaticVulnCount + totalDynamicVulnCount
+                + totalInfoVulnCount;
 
             htmlContent = htmlContent.Replace("{TotalVulnCount}", totalVulnCount.ToString());
             htmlContent = htmlContent.Replace("{Content}", htmlVulns.ToString());
 
-            string chart1Data = "['Static (" + totalStaticVulnCount + ")', " + totalStaticVulnCount + "], ['Dynamic (" + totalDynamicVulnCount + ")', " + totalDynamicVulnCount + "]";
+            string chart1Data = "['Static (" + totalStaticVulnCount + ")', " + totalStaticVulnCount + 
+                "], ['Dynamic (" + totalDynamicVulnCount + ")', " + totalDynamicVulnCount +
+                "], ['Information (" + totalInfoVulnCount + ")', " + totalInfoVulnCount + "]";
 
             string chart2Data = string.Empty;
-            int criticalVulnCount = 0, highVulnCount = 0, mediumVulnCount = 0, lowVulnCount = 0;
+            int criticalVulnCount = 0, highVulnCount = 0, mediumVulnCount = 0, lowVulnCount = 0, infoVulnCount = 0;
             foreach (Param param in allVulns)
             {
                 chart2Data += "['" + param.Name + " (" + param.Value + ")', " + param.Value + "],";
@@ -52,6 +57,7 @@ namespace WSSAT.Helpers
                     case "High": highVulnCount += int.Parse(param.Value); break;
                     case "Medium": mediumVulnCount += int.Parse(param.Value); break;
                     case "Low": lowVulnCount += int.Parse(param.Value); break;
+                    case "Info": infoVulnCount += int.Parse(param.Value); break;
                     default: break;
                 }
             }
@@ -61,7 +67,11 @@ namespace WSSAT.Helpers
                 chart2Data = chart2Data.Remove(chart2Data.Length - 1); // remove last ","
             }
 
-            string chart3Data = "['Critical (" + criticalVulnCount + ")', " + criticalVulnCount + "],['High (" + highVulnCount + ")', " + highVulnCount + "], ['Medium (" + mediumVulnCount + ")', " + mediumVulnCount + "], ['Low (" + lowVulnCount + ")', " + lowVulnCount + "]";
+            string chart3Data = "['Critical (" + criticalVulnCount + ")', " + criticalVulnCount + 
+                "],['High (" + highVulnCount + ")', " + highVulnCount + 
+                "], ['Medium (" + mediumVulnCount + ")', " + mediumVulnCount +
+                "], ['Low (" + lowVulnCount + ")', " + lowVulnCount +
+                "], ['Info (" + infoVulnCount + ")', " + infoVulnCount + "]";
 
             htmlContent = htmlContent.Replace("{ChartData1}", chart1Data);
             htmlContent = htmlContent.Replace("{ChartData2}", chart2Data);
@@ -103,6 +113,18 @@ namespace WSSAT.Helpers
                 result.Append("<tr><td><hr /></td></tr>");
 
                 AddToAllVuln("Dyn" + vuln.Vuln.id, ref allVulns, vuln.Vuln.title, vuln.Vuln.severity);
+            }
+
+            foreach (DisclosureVulnerabilityForReport vuln in wsDesc.InfoVulns)
+            {
+                result.Append("<tr><td colspan='2'><ul>");
+                result.Append("<li>" + vuln.Vuln.title + " - Severity:<b>" + vuln.Vuln.severity + "</b> - <i>Scan Type: Information Disclosure</i></li>");
+                result.Append("<li>Value:<br /><b><pre>" + System.Web.HttpUtility.HtmlEncode(vuln.Value) + "</pre></b></li>");
+                result.Append("<li><b>Description:</b><br /><pre>" + System.Web.HttpUtility.HtmlEncode(vuln.Vuln.description) + "</pre><br /><a href='" + vuln.Vuln.link + "' target='_blank'>Vulnerability Details</a></li>");
+                result.Append("</ul></td></tr>");
+                result.Append("<tr><td><hr /></td></tr>");
+
+                AddToAllVuln("Info" + vuln.Vuln.id, ref allVulns, vuln.Vuln.title, vuln.Vuln.severity);
             }
 
             result.Append("</table>");

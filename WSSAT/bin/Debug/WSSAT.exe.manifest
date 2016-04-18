@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="52160">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="56768">
       <assemblyIdentity name="WSSAT" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>S88DgepARzgbCsnCMi7qkP/+JKI2nljfNP5g2R4KH2o=</dsig:DigestValue>
+        <dsig:DigestValue>MgpzBXFpya0Pw/dMZqj+DUQ/k+Zo/68vmw7pQ0gmbVc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -141,6 +141,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="XML\DisclosureVulnerabilities.xml" size="3378" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1thjaJjAIhUDbQD7/HWKBjomVU2ey7qwVbNgWaPw/l4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="XML\StaticVulnerabilities.xml" size="6402" writeableType="applicationData">

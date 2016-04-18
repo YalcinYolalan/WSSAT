@@ -23,3 +23,4 @@ D:\Projects\DotNet\CSharp\WSSAT\WSSAT\obj\Debug\WSSAT.csproj.GenerateResource.Ca
 D:\Projects\DotNet\CSharp\WSSAT\WSSAT\obj\Debug\WSSAT.exe.manifest
 D:\Projects\DotNet\CSharp\WSSAT\WSSAT\obj\Debug\WSSAT.application
 D:\Projects\DotNet\CSharp\WSSAT\WSSAT\obj\Debug\WSSAT.pdb
+D:\Projects\DotNet\CSharp\WSSAT\WSSAT\obj\Debug\WSSAT.csprojResolveAssemblyReference.cache

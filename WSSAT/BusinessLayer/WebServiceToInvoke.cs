@@ -42,9 +42,9 @@ namespace WSSAT.BusinessLayer
             Params.Add(new Param() { Name = name, Value = value });
         }
 
-        public void InvokeMethod(string methodName, string targetNameSpace, WSDescriber wsDesc)
+        public void InvokeMethod(string methodName, string targetNameSpace, WSDescriber wsDesc, ref List<Param> respHeader)
         {
-            InvokeMethod(methodName, true, targetNameSpace, wsDesc);
+            InvokeMethod(methodName, true, targetNameSpace, wsDesc, ref respHeader);
         }
 
         public void CleanLastInvoke()
@@ -84,7 +84,7 @@ namespace WSSAT.BusinessLayer
             }
         }
 
-        private void InvokeMethod(string methodName, bool encode, string targetNameSpace, WSDescriber wsDesc)
+        private void InvokeMethod(string methodName, bool encode, string targetNameSpace, WSDescriber wsDesc, ref List<Param> respHeader)
         {
             AssertCanInvoke(methodName);
             string soapStr =
@@ -131,6 +131,9 @@ namespace WSSAT.BusinessLayer
             try
             {
                 HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+
+                SetHeader(resp, ref respHeader);
+
                 StatusCode = (int)resp.StatusCode;
                 using (StreamReader responseReader = new StreamReader(resp.GetResponseStream()))
                 {
@@ -144,7 +147,11 @@ namespace WSSAT.BusinessLayer
             {
                 if (wex.Response != null)
                 {
-                    StatusCode = (int)((HttpWebResponse)wex.Response).StatusCode;
+                    HttpWebResponse resp = (HttpWebResponse)wex.Response;
+
+                    SetHeader(resp, ref respHeader);
+
+                    StatusCode = (int)(resp).StatusCode;
                     ResultString = new StreamReader(wex.Response.GetResponseStream())
                               .ReadToEnd();
                 }
@@ -163,6 +170,21 @@ namespace WSSAT.BusinessLayer
                 throw ex;
             }
             finally {
+            }
+        }
+
+        private void SetHeader(HttpWebResponse resp, ref List<Param> respHeader)
+        {
+            if (resp != null && resp.Headers != null && resp.Headers.Count > 0)
+            {
+                for (int i = 0; i < resp.Headers.Count; ++i)
+                {
+                    if (respHeader.Where(rh => rh.Name.ToLowerInvariant().Equals(resp.Headers.Keys[i].ToLowerInvariant()) &&
+                        rh.Value.ToLowerInvariant().Equals(resp.Headers[i].ToLowerInvariant())).Count() == 0)
+                    {
+                        respHeader.Add(new Param() { Name = resp.Headers.Keys[i].ToLowerInvariant(), Value = resp.Headers[i].ToLowerInvariant() });
+                    }
+                }
             }
         }
 

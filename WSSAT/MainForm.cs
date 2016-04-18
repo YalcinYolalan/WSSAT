@@ -19,6 +19,7 @@ namespace WSSAT
         string scanDirectory = null;
         public static Vulnerabilities vulnerabilities = null;
         public static StaticVulnerabilities staticVulnerabilities = null;
+        public static DisclosureVulnerabilities disclosureVulnerabilities = null;
 
         public MainForm()
         {
@@ -96,12 +97,15 @@ namespace WSSAT
                     WSItemVulnerabilities.WsDesc = wsDesc;
                     WSItemVulnerabilities.Vulns = new List<VulnerabilityForReport>();
                     WSItemVulnerabilities.StaticVulns = new List<StaticVulnerabilityForReport>();
+                    WSItemVulnerabilities.InfoVulns = new List<DisclosureVulnerabilityForReport>();
 
                     Log("WSDL Address: " + wsDesc.WSDLAddress, FontStyle.Bold, true);
                     Log("Parsing WSDL...", FontStyle.Regular, true);
 
+                    List<Param> respHeader = new List<Param>();
+
                     bool untrustedSSLSecureChannel = false;
-                    Parser parser = new Parser(wsDesc, ref untrustedSSLSecureChannel);
+                    Parser parser = new Parser(wsDesc, ref untrustedSSLSecureChannel, ref respHeader);
 
                     if (chkStaticScan.Checked)
                     {
@@ -113,7 +117,7 @@ namespace WSSAT
                         {
                             Log("   Testing: " + staticVuln.title, FontStyle.Regular, chkDebug.Checked);
 
-                            string staticScanRes = svs.ScanIt(staticVuln, parser.rawWSDL, WSItemVulnerabilities);
+                            string staticScanRes = svs.ScanIt(staticVuln, parser.rawWSDL);
 
                             if (!string.IsNullOrEmpty(staticScanRes))
                             {
@@ -167,7 +171,7 @@ namespace WSSAT
 
                                     try
                                     {
-                                        dynScn.ScanVulnerabilities(wsInvoker, operation, vuln, parser.TargetNameSpace, wsDesc, WSItemVulnerabilities, reportObject, chkDebug.Checked);
+                                        dynScn.ScanVulnerabilities(wsInvoker, operation, vuln, parser.TargetNameSpace, wsDesc, WSItemVulnerabilities, reportObject, chkDebug.Checked, ref respHeader);
                                     }
                                     catch (System.Web.Services.Protocols.SoapException soapEx)
                                     {
@@ -181,6 +185,33 @@ namespace WSSAT
                             }
                         }
                     }
+
+                    if (chkInfoDisclosure.Checked)
+                    {
+                        Log("Information Disclosure Analysis Started", FontStyle.Regular, true);
+
+                        InformationDisclosureVulnerabilityScanner idvs = new InformationDisclosureVulnerabilityScanner(this);
+
+                        foreach (InformationDisclosureVulnerability infoVuln in disclosureVulnerabilities.Vulnerability)
+                        {
+                            Log("   Searching Response Header: " + infoVuln.title, FontStyle.Regular, chkDebug.Checked);
+
+                            string infoScanRes = idvs.ScanIt(infoVuln, respHeader);
+
+                            if (!string.IsNullOrEmpty(infoScanRes))
+                            {
+                                Log("   " + infoVuln.title + " Information Disclosure Found: " + infoScanRes, FontStyle.Bold, true);
+                                DisclosureVulnerabilityForReport vulnRep = new DisclosureVulnerabilityForReport();
+                                vulnRep.Vuln = infoVuln;
+                                vulnRep.Value = infoScanRes;
+
+                                WSItemVulnerabilities.InfoVulns.Add(vulnRep);
+                            }
+                        }
+
+                        Log("Information Disclosure Analysis Finished", FontStyle.Regular, true);
+                    }
+
                     reportObject.WsDescs.Add(WSItemVulnerabilities);
                 }
 
@@ -249,6 +280,15 @@ namespace WSSAT
                new System.IO.StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + @"\..\..\XML\StaticVulnerabilities.xml");
 
             staticVulnerabilities = (StaticVulnerabilities)reader.Deserialize(file);
+
+            disclosureVulnerabilities = new DisclosureVulnerabilities();
+            reader = new
+               System.Xml.Serialization.XmlSerializer(disclosureVulnerabilities.GetType());
+
+            file =
+               new System.IO.StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + @"\..\..\XML\DisclosureVulnerabilities.xml");
+
+            disclosureVulnerabilities = (DisclosureVulnerabilities)reader.Deserialize(file);
 
             file.Close();
         }

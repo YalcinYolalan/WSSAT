@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DisclosureVulnerabilities>
+  <Vulnerability>
+    <id>1</id>
+    <title>HTTP Response Header: Server</title>
+    <description>
+      Information Leakage from "Server" header can give away too much information in operational environments to attackers.
+      Remove this header from your web server.
+    </description>
+    <link>https://www.owasp.org/index.php/Testing_for_Web_Application_Fingerprint_%28OWASP-IG-004%29</link>
+    <tagName>Server</tagName>
+    <severity>Info</severity>
+  </Vulnerability>
+  <Vulnerability>
+    <id>2</id>
+    <title>HTTP Response Header: X-Powered-By</title>
+    <description>
+      Information Leakage from "X-Powered-By" header can give away too much information in operational environments to attackers.
+      Remove this header from your web server.
+    </description>
+    <link>https://www.owasp.org/index.php/Information_Leakage</link>
+    <tagName>X-Powered-By</tagName>
+    <severity>Info</severity>
+  </Vulnerability>
+  <Vulnerability>
+    <id>3</id>
+    <title>HTTP Response Header: X-AspNet-Version</title>
+    <description>
+      Information Leakage from "X-AspNet-Version" header can give away too much information in operational environments to attackers.
+      Remove this header from your web server.
+    </description>
+    <link>https://www.owasp.org/index.php/Information_Leakage</link>
+    <tagName>X-AspNet-Version</tagName>
+    <severity>Info</severity>
+  </Vulnerability>
+  <Vulnerability>
+    <id>4</id>
+    <title>HTTP Response Header: X-AspNetMvc-Version</title>
+    <description>
+      Information Leakage from "X-AspNetMvc-Version" header can give away too much information in operational environments to attackers.
+      Remove this header from your web server.
+    </description>
+    <link>https://www.owasp.org/index.php/Information_Leakage</link>
+    <tagName>X-AspNetMvc-Version</tagName>
+    <severity>Info</severity>
+  </Vulnerability>
+  <Vulnerability>
+    <id>5</id>
+    <title>HTTP Response Header: X-Runtime</title>
+    <description>
+      Information Leakage from "X-Runtime" header can give away too much information in operational environments to attackers.
+      Remove this header from your web server.
+    </description>
+    <link>https://www.owasp.org/index.php/Information_Leakage</link>
+    <tagName>X-Runtime</tagName>
+    <severity>Info</severity>
+  </Vulnerability>
+  <Vulnerability>
+    <id>6</id>
+    <title>HTTP Response Header: X-Version</title>
+    <description>
+      Information Leakage from "X-Version" header can give away too much information in operational environments to attackers.
+      Remove this header from your web server.
+    </description>
+    <link>https://www.owasp.org/index.php/Information_Leakage</link>
+    <tagName>X-Version</tagName>
+    <severity>Info</severity>
+  </Vulnerability>
+  <Vulnerability>
+    <id>7</id>
+    <title>HTTP Response Header: Allow</title>
+    <description>
+      Information Leakage from "Allow" header can give away too much information in operational environments to attackers.
+      Remove this header from your web server.
+    </description>
+    <link>https://www.owasp.org/index.php/Information_Leakage</link>
+    <tagName>Allow</tagName>
+    <severity>Info</severity>
+  </Vulnerability>
+</DisclosureVulnerabilities>

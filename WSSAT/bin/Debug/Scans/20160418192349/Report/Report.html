@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>WSSAT Scan Result</title>
+    <script type="text/javascript" src="../../../PieChart/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../PieChart/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="../../../PieChart/jqplot.pieRenderer.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../PieChart/jquery.jqplot.css" />
+    <script type="text/javascript" src="../../../Accordion/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../../Accordion/jquery-ui.css" />
+    <style>
+        body {
+            font: 72.5% "Trebuchet MS", sans-serif;
+            margin: 50px;
+        }
+
+        #tbl4 .accordion {
+            background: #C7DDEE none repeat-x scroll center left;
+            color: #000;
+            padding: 7px 15px;
+        }
+
+        #tbl4 tr {
+            background: #eff6fc none repeat-x scroll center left;
+            color: #000;
+            padding: 7px 15px;
+        }
+        #tbl4 .accordion div.arrow {
+            background: transparent url(../../../../Accordion/arrows.png) no-repeat scroll 0px 0px;
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+
+        #tbl4 .accordion div.arrow .up {
+            background-position: 0px 0px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            jQuery.jqplot.config.enablePlugins = true;
+            plot7 = jQuery.jqplot('chart1',
+              [[['Static (0)', 0], ['Dynamic (6)', 6]]],
+              {
+                  title: 'Vulnerability Type',
+                  seriesDefaults: { shadow: true, renderer: jQuery.jqplot.PieRenderer, rendererOptions: { showDataLabels: true } },
+                  legend: { show: true }
+              }
+            );
+        });
+        $(document).ready(function () {
+            jQuery.jqplot.config.enablePlugins = true;
+            plot7 = jQuery.jqplot('chart2',
+              [[['Insecure Communication - SSL Not Used (1)', 1],['Unauthenticated Service Method (2)', 2],['Cross Site Scripting (3)', 3]]],
+              {
+                  title: 'Vulnerability',
+                  seriesDefaults: { shadow: true, renderer: jQuery.jqplot.PieRenderer, rendererOptions: { showDataLabels: true } },
+                  legend: { show: true }
+              }
+            );
+        });
+        $(document).ready(function () {
+            jQuery.jqplot.config.enablePlugins = true;
+            plot7 = jQuery.jqplot('chart3',
+              [[['Critical (3)', 3],['High (3)', 3], ['Medium (0)', 0], ['Low (0)', 0]]],
+              {
+                  title: 'Severity',
+                  seriesDefaults: { shadow: true, renderer: jQuery.jqplot.PieRenderer, rendererOptions: { showDataLabels: true } },
+                  legend: { show: true }
+              }
+            );
+        });
+        $(function () {
+            var $research = $('.wsdl');
+            $research.find("tr").not('.accordion').hide();
+            $research.find("tr").eq(0).show();
+
+            $research.find(".accordion").click(function () {
+                $research.find('.accordion').not(this).siblings().fadeOut(500);
+                $(this).siblings().fadeToggle(500);
+
+                $(this).find("div.arrow").toggleClass("up");
+
+            }).eq(0).trigger('click');
+        });
+    </script>
+</head>
+<body>
+    <table style="text-align:center;width:100%;background: #eff6fc" id="tbl1">
+        <tr>
+            <td colspan="2" style="border-style:solid;"><h1>Web Service Security Assesment Tool Scan Result</h1></td>
+        </tr>
+        <tr>
+            <td style="border-style:solid; color:maroon">Vulnerability Count:<b>6</b></td>
+            <td style="border-style:solid; color:maroon">Duration(Mnt):<b>0,08</b>&nbsp;&nbsp;Scan Started:<b>18.04.2016 19:23:49</b>&nbsp;&nbsp;Total Request Count:<b>107</b></td>
+        </tr>
+    </table>
+    <table style="width:100%;background: #eff6fc" id="tbl2">
+        <tr>
+            <td><div id="chart2" style="height:300px; width:500px;"></div></td>
+            <td><div id="chart3" style="height:300px; width:500px;"></div></td>
+            <td><div id="chart1" style="height:300px; width:500px;"></div></td>
+        </tr>
+    </table>
+    <table style="width:100%;" id="tbl3">
+        <tr>
+            <td><table style='border-style:solid;width:100%' id='tbl4' class='wsdl'><tr class='accordion'><td><b>WSDL Address: http://www.wstest.com/XSS.asmx?WSDL</b>&nbsp;&nbsp;Vulnerability Count:6</td><td><div class='arrow'></div></td></tr><tr><td colspan='2'><ul><li>Insecure Communication - SSL Not Used - Severity:<b>High</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b></b></li><li>Parameter Name:<b></b></li><li>Payload:<br /><b><pre></pre></b></li><li>Status Code:<br /><b><pre></pre></b></li><li>Response:<br /><b><pre></pre></b></li><li><b>Description:</b><br /><pre>Insecure communication means that an attacker who can sniff traffic from the network will be able to access the conversation, 
+    including any credentials or sensitive information transmitted.</pre><br /><a href='http://www.hpenterprisesecurity.com/vulncat/en/vulncat/webservices/weak_ws-securitypolicy_insecure_transport.html' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Unauthenticated Service Method - Severity:<b>High</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b>ShowMessage</b></li><li>Parameter Name:<b></b></li><li>Payload:<br /><b><pre></pre></b></li><li>Status Code:<br /><b><pre>200</pre></b></li><li>Response:<br /><b><pre>A</pre></b></li><li><b>Description:</b><br /><pre>Insufficient Authentication occurs when a web service permits an attacker to access sensitive function without having to 
+    properly authenticate.</pre><br /><a href='http://projects.webappsec.org/w/page/13246939/Insufficient%20Authentication' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Cross Site Scripting - Severity:<b>Critical</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b>ShowMessage</b></li><li>Parameter Name:<b>txt</b></li><li>Payload:<br /><b><pre>
+        &lt;script&gt;alert(1)&lt;/script&gt;
+        </pre></b></li><li>Status Code:<br /><b><pre>200</pre></b></li><li>Response:<br /><b><pre>&lt;script&gt;alert(1)&lt;/script&gt;</pre></b></li><li><b>Description:</b><br /><pre>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign 
+    and trusted web sites.</pre><br /><a href='https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Unauthenticated Service Method - Severity:<b>High</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b>XSSTest2</b></li><li>Parameter Name:<b></b></li><li>Payload:<br /><b><pre></pre></b></li><li>Status Code:<br /><b><pre>200</pre></b></li><li>Response:<br /><b><pre>A</pre></b></li><li><b>Description:</b><br /><pre>Insufficient Authentication occurs when a web service permits an attacker to access sensitive function without having to 
+    properly authenticate.</pre><br /><a href='http://projects.webappsec.org/w/page/13246939/Insufficient%20Authentication' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Cross Site Scripting - Severity:<b>Critical</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b>XSSTest2</b></li><li>Parameter Name:<b>txt</b></li><li>Payload:<br /><b><pre>
+        &lt;script&gt;alert(1)&lt;/script&gt;
+        </pre></b></li><li>Status Code:<br /><b><pre>200</pre></b></li><li>Response:<br /><b><pre>&lt;script&gt;alert(1)&lt;/script&gt;</pre></b></li><li><b>Description:</b><br /><pre>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign 
+    and trusted web sites.</pre><br /><a href='https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr><tr><td colspan='2'><ul><li>Cross Site Scripting - Severity:<b>Critical</b> - <i>Scan Type: Dynamic</i></li><li>Method Name:<b>XSSTest2</b></li><li>Parameter Name:<b>a</b></li><li>Payload:<br /><b><pre>
+        &lt;script&gt;alert(1)&lt;/script&gt;
+        </pre></b></li><li>Status Code:<br /><b><pre>200</pre></b></li><li>Response:<br /><b><pre>&lt;script&gt;alert(1)&lt;/script&gt;</pre></b></li><li><b>Description:</b><br /><pre>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign 
+    and trusted web sites.</pre><br /><a href='https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)' target='_blank'>Vulnerability Details</a></li></ul></td></tr><tr><td><hr /></td></tr></table></td>
+        </tr>
+    </table>
+</body>
+</html>

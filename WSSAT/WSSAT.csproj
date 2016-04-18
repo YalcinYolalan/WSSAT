@@ -76,11 +76,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\DynamicVulnerabilityScanner.cs" />
+    <Compile Include="BusinessLayer\InformationDisclosureVulnerabilityScanner.cs" />
     <Compile Include="BusinessLayer\Parser.cs" />
     <Compile Include="BusinessLayer\StaticVulnerabilityScanner.cs" />
     <Compile Include="BusinessLayer\Utils.cs" />
     <Compile Include="BusinessLayer\WebServiceToInvoke.cs" />
     <Compile Include="DataTypes\DefaultValues.cs" />
+    <Compile Include="DataTypes\DisclosureVulnerabilities.cs" />
+    <Compile Include="DataTypes\DisclosureVulnerabilityForReport.cs" />
     <Compile Include="DataTypes\Param.cs" />
     <Compile Include="DataTypes\ReportObject.cs" />
     <Compile Include="DataTypes\StaticVulnerabilities.cs" />
@@ -138,6 +141,7 @@
     <Content Include="PieChart\jquery.min.js" />
     <Content Include="ReportTemplates\HTMLReportTemplate.html" />
     <Content Include="wsdls.txt" />
+    <Content Include="XML\DisclosureVulnerabilities.xml" />
     <Content Include="XML\Vulnerabilities.xml">
       <SubType>Designer</SubType>
     </Content>

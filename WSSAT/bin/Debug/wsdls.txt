@@ -3,4 +3,4 @@
 
 # WSDL Address - Example:
 #https://www.wstest.com/Sqli.asmx?WSDL
-#http://www.wstest.com/XSS.asmx?WSDL
+http://www.wstest.com/XSS.asmx?WSDL
