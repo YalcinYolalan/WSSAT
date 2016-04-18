@@ -22,11 +22,63 @@
       <h1>
 <a id="wssat---web-service-security-assessment-tool" class="anchor" href="#wssat---web-service-security-assessment-tool" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSSAT - Web Service Security Assessment Tool</h1>
 
-<p>This project has been developed as Term Project at Middle East Technical University (METU), Software Management master program.</p>
+<p>WSSAT is an open source web service security scanning tool which provides a dynamic environment to add, update or delete vulnerabilities by just editing its configuration files. This tool accepts WSDL address list as input file and for each service, it performs both static and dynamic tests against the security vulnerabilities. It also makes information disclosure controls.
+With this tool, all web services could be analysed at once and the overall security assessment could be seen by the organization.</p>
 
-<p>WSSAT is taking WSDL document list as input file and for each service, it makes dynamic and static analysis and generates reports. With this tool, all web services could be analysed at once and the overall security assessment could be seen by the organization.</p>
+<p><strong>Objectives of WSSAT are to allow organizations:</strong></p>
+
+<ul>
+<li>Perform their web services security analysis at once</li>
+<li>See overall security assessment with reports</li>
+<li>Harden their web services</li>
+</ul>
 
 <p><img src="https://github.com/YalcinYolalan/WSSAT/blob/master/images/MainScreen.PNG?raw=true" alt="WSSAT Main Screen"></p>
+
+<p><strong>WSSAT’s main capabilities include:</strong></p>
+
+<p><strong>Dynamic Testing:</strong></p>
+
+<ul>
+<li>Insecure Communication - SSL Not Used</li>
+<li>Unauthenticated Service Method</li>
+<li>Error Based SQL Injection</li>
+<li>Cross Site Scripting</li>
+<li>XML Bomb</li>
+<li>External Entity Attack - XXE</li>
+<li>XPATH Injection</li>
+<li>Verbose SOAP Fault Message</li>
+</ul>
+
+<p><strong>Static Analysis:</strong></p>
+
+<ul>
+<li>Weak XML Schema: Unbounded Occurrences</li>
+<li>Weak XML Schema: Undefined Namespace</li>
+<li>Weak WS-SecurityPolicy: Insecure Transport</li>
+<li>Weak WS-SecurityPolicy: Insufficient Supporting Token Protection</li>
+<li>Weak WS-SecurityPolicy: Tokens Not Protected</li>
+</ul>
+
+<p><strong>Information Leakage:</strong></p>
+
+<ul>
+<li>Server or technology information disclosure</li>
+</ul>
+
+<p><strong>WSSAT’s main modules are:</strong></p>
+
+<ul>
+<li>Parser</li>
+<li>Vulnerabilities Loader</li>
+<li>Analyzer/Attacker</li>
+<li>Logger</li>
+<li>Report Generator</li>
+</ul>
+
+<p>The main difference of WSSAT is to create a dynamic vulnerability management environment instead of embedding the vulnerabilities into the code.</p>
+
+<p><em>This project has been developed as Term Project at Middle East Technical University (METU), Software Management master program.</em></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/YalcinYolalan/WSSAT">WSSAT</a> is maintained by <a href="https://github.com/YalcinYolalan">YalcinYolalan</a>.</span>
