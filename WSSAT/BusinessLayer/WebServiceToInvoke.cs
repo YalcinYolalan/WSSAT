@@ -42,9 +42,9 @@ namespace WSSAT.BusinessLayer
             Params.Add(new Param() { Name = name, Value = value });
         }
 
-        public void InvokeMethod(string methodName, string targetNameSpace, WSDescriber wsDesc, ref List<Param> respHeader)
+        public void InvokeMethod(string methodName, string targetNameSpace, WSDescriber wsDesc, ref List<Param> respHeader, string customSoapHeaderTags, string customSoapBodyTags)
         {
-            InvokeMethod(methodName, true, targetNameSpace, wsDesc, ref respHeader);
+            InvokeMethod(methodName, true, targetNameSpace, wsDesc, ref respHeader, customSoapHeaderTags, customSoapBodyTags);
         }
 
         public void CleanLastInvoke()
@@ -84,7 +84,8 @@ namespace WSSAT.BusinessLayer
             }
         }
 
-        private void InvokeMethod(string methodName, bool encode, string targetNameSpace, WSDescriber wsDesc, ref List<Param> respHeader)
+        private void InvokeMethod(string methodName, bool encode, string targetNameSpace, WSDescriber wsDesc,
+            ref List<Param> respHeader, string customSoapHeaderTags, string customSoapBodyTags)
         {
             AssertCanInvoke(methodName);
             string soapStr =
@@ -92,6 +93,7 @@ namespace WSSAT.BusinessLayer
                 <soap:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
                    xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
                    xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
+                  <soap:Header>{2}</soap:Header>
                   <soap:Body>
                     <{0} xmlns=""http://tempuri.org/"">
                       {1}
@@ -121,7 +123,12 @@ namespace WSSAT.BusinessLayer
                     else postValues += string.Format("<{0}>{1}</{0}>", param.Name, param.Value);
                 }
 
-                soapStr = string.Format(soapStr, methodName, postValues);
+                if (!string.IsNullOrEmpty(customSoapBodyTags))
+                {
+                    postValues = customSoapBodyTags + postValues;
+                }
+
+                soapStr = string.Format(soapStr, methodName, postValues, customSoapHeaderTags);
                 using (StreamWriter stmw = new StreamWriter(stm))
                 {
                     stmw.Write(soapStr);

@@ -171,7 +171,8 @@ namespace WSSAT
 
                                     try
                                     {
-                                        dynScn.ScanVulnerabilities(wsInvoker, operation, vuln, parser.TargetNameSpace, wsDesc, WSItemVulnerabilities, reportObject, chkDebug.Checked, ref respHeader);
+                                        dynScn.ScanVulnerabilities(wsInvoker, operation, vuln, parser.TargetNameSpace, wsDesc, WSItemVulnerabilities, reportObject,
+                                            chkDebug.Checked, ref respHeader, txtCustomSoapHeaderTags.Text.Trim(), txtCustomSoapBodyTags.Text.Trim());
                                     }
                                     catch (System.Web.Services.Protocols.SoapException soapEx)
                                     {

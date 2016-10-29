@@ -32,13 +32,17 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkInfoDisclosure = new System.Windows.Forms.CheckBox();
             this.chkDynamicScan = new System.Windows.Forms.CheckBox();
             this.chkStaticScan = new System.Windows.Forms.CheckBox();
             this.chkDebug = new System.Windows.Forms.CheckBox();
             this.btnScan = new System.Windows.Forms.Button();
             this.lblSelectedFileName = new System.Windows.Forms.Label();
             this.btnOpenFile = new System.Windows.Forms.Button();
-            this.chkInfoDisclosure = new System.Windows.Forms.CheckBox();
+            this.txtCustomSoapHeaderTags = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtCustomSoapBodyTags = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,10 +55,10 @@
             this.lvResult.ForeColor = System.Drawing.Color.White;
             this.lvResult.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvResult.LabelWrap = false;
-            this.lvResult.Location = new System.Drawing.Point(0, 111);
+            this.lvResult.Location = new System.Drawing.Point(0, 183);
             this.lvResult.Name = "lvResult";
             this.lvResult.ShowItemToolTips = true;
-            this.lvResult.Size = new System.Drawing.Size(789, 320);
+            this.lvResult.Size = new System.Drawing.Size(869, 416);
             this.lvResult.TabIndex = 0;
             this.lvResult.UseCompatibleStateImageBehavior = false;
             this.lvResult.View = System.Windows.Forms.View.Details;
@@ -71,6 +75,10 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Black;
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtCustomSoapBodyTags);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtCustomSoapHeaderTags);
             this.groupBox1.Controls.Add(this.chkInfoDisclosure);
             this.groupBox1.Controls.Add(this.chkDynamicScan);
             this.groupBox1.Controls.Add(this.chkStaticScan);
@@ -78,15 +86,28 @@
             this.groupBox1.Controls.Add(this.btnScan);
             this.groupBox1.Controls.Add(this.lblSelectedFileName);
             this.groupBox1.Controls.Add(this.btnOpenFile);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(789, 97);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(869, 183);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
+            // 
+            // chkInfoDisclosure
+            // 
+            this.chkInfoDisclosure.AutoSize = true;
+            this.chkInfoDisclosure.Checked = true;
+            this.chkInfoDisclosure.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkInfoDisclosure.ForeColor = System.Drawing.Color.White;
+            this.chkInfoDisclosure.Location = new System.Drawing.Point(558, 61);
+            this.chkInfoDisclosure.Name = "chkInfoDisclosure";
+            this.chkInfoDisclosure.Size = new System.Drawing.Size(130, 17);
+            this.chkInfoDisclosure.TabIndex = 13;
+            this.chkInfoDisclosure.Text = "Information Disclosure";
+            this.chkInfoDisclosure.UseVisualStyleBackColor = true;
             // 
             // chkDynamicScan
             // 
@@ -159,25 +180,52 @@
             this.btnOpenFile.UseVisualStyleBackColor = false;
             this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
-            // chkInfoDisclosure
+            // txtCustomSoapHeaderTags
             // 
-            this.chkInfoDisclosure.AutoSize = true;
-            this.chkInfoDisclosure.Checked = true;
-            this.chkInfoDisclosure.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkInfoDisclosure.ForeColor = System.Drawing.Color.White;
-            this.chkInfoDisclosure.Location = new System.Drawing.Point(558, 61);
-            this.chkInfoDisclosure.Name = "chkInfoDisclosure";
-            this.chkInfoDisclosure.Size = new System.Drawing.Size(130, 17);
-            this.chkInfoDisclosure.TabIndex = 13;
-            this.chkInfoDisclosure.Text = "Information Disclosure";
-            this.chkInfoDisclosure.UseVisualStyleBackColor = true;
+            this.txtCustomSoapHeaderTags.Location = new System.Drawing.Point(178, 92);
+            this.txtCustomSoapHeaderTags.Multiline = true;
+            this.txtCustomSoapHeaderTags.Name = "txtCustomSoapHeaderTags";
+            this.txtCustomSoapHeaderTags.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtCustomSoapHeaderTags.Size = new System.Drawing.Size(169, 85);
+            this.txtCustomSoapHeaderTags.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(7, 92);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(165, 86);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Custom Soap:Header Tag(s)\r\n(This XML tags will be sent in <soap:Header> e.g. <tok" +
+    "en>xxx</token><pass>xxx</pass>) ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(387, 92);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(165, 86);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Custom Soap:Body Tag(s)\r\n(This XML tags will be sent in <soap:Body> e.g. <token>x" +
+    "xx</token><pass>xxx</pass>) ";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtCustomSoapBodyTags
+            // 
+            this.txtCustomSoapBodyTags.Location = new System.Drawing.Point(558, 92);
+            this.txtCustomSoapBodyTags.Multiline = true;
+            this.txtCustomSoapBodyTags.Name = "txtCustomSoapBodyTags";
+            this.txtCustomSoapBodyTags.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtCustomSoapBodyTags.Size = new System.Drawing.Size(169, 85);
+            this.txtCustomSoapBodyTags.TabIndex = 16;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(789, 431);
+            this.ClientSize = new System.Drawing.Size(869, 599);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lvResult);
             this.ForeColor = System.Drawing.Color.White;
@@ -203,6 +251,10 @@
         private System.Windows.Forms.Label lblSelectedFileName;
         private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.CheckBox chkInfoDisclosure;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCustomSoapHeaderTags;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtCustomSoapBodyTags;
     }
 }
 
