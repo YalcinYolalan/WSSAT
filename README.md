@@ -7,6 +7,9 @@ With this tool, all web services could be analysed at once and the overall secur
 * See overall security assessment with reports
 * Harden their web services
 
+# WSSAT 2.0
+**REST API** scanning support was added with same dynamic environment philosophy as SOAP services. [ChangeLog](https://github.com/YalcinYolalan/WSSAT/blob/master/CHANGELOG.md)
+
 **WSSAT’s main capabilities include:**
 
 **Dynamic Testing:**
@@ -17,6 +20,9 @@ With this tool, all web services could be analysed at once and the overall secur
 * XML Bomb
 * External Entity Attack - XXE
 * XPATH Injection
+* HTTP OPTIONS Method
+* Cross Site Tracing (XST)
+* Missing X-XSS-Protection Header
 * Verbose SOAP Fault Message
 
 **Static Analysis:**
@@ -35,6 +41,10 @@ With this tool, all web services could be analysed at once and the overall secur
 * Analyzer/Attacker
 * Logger
 * Report Generator
+
+**Installation & Usage**
+* [Installation](https://github.com/YalcinYolalan/WSSAT/wiki/Installation)
+* [Usage](https://github.com/YalcinYolalan/WSSAT/wiki/USAGE)
 
 The main difference of WSSAT is to create a dynamic vulnerability management environment instead of embedding the vulnerabilities into the code.
 

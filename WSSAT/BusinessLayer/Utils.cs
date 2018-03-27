@@ -20,12 +20,14 @@ namespace WSSAT.BusinessLayer
             // FROM: http://social.msdn.microsoft.com/Forums/en-US/bed57335-827a-4731-b6da-a7636ac29f21/xdocument-remove-namespace?forum=linqprojectgeneral
             try
             {
-                XDocument newXml = XDocument.Parse(Regex.Replace(
+                string newXMLStr = Regex.Replace(
                     oldXml.ToString(),
-                    @"(xmlns:?[^=]*=[""][^""]*[""])",
+                    @"(xmlns:|xsi:?[^=]*=[""][^""]*[""])",
                     "",
-                    RegexOptions.IgnoreCase | RegexOptions.Multiline)
-                );
+                    RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+
+                XDocument newXml = XDocument.Parse(newXMLStr);
                 return newXml;
             }
             catch (XmlException error)

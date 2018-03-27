@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -21,9 +22,17 @@ namespace WSSAT
         public static StaticVulnerabilities staticVulnerabilities = null;
         public static DisclosureVulnerabilities disclosureVulnerabilities = null;
 
+        public static string CustomSoapHeaderTags = string.Empty;
+        public static string CustomSoapBodyTags = string.Empty;
+
+        public static string CustomRequestHeader = string.Empty;
+        public static string UserAgentHeader = string.Empty;
+
         public MainForm()
         {
             InitializeComponent();
+
+            UserAgentHeader = ConfigurationManager.AppSettings.Get("userAgent");
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
@@ -52,8 +61,10 @@ namespace WSSAT
 
                                 if (arr.Length > 1)
                                 {
-                                    wsDesc.Username = arr[1].Trim();
-                                    wsDesc.Password = arr[2].Trim();
+                                    wsDesc.BasicAuthentication = new BasicAuthentication();
+
+                                    wsDesc.BasicAuthentication.Username = arr[1].Trim();
+                                    wsDesc.BasicAuthentication.Password = arr[2].Trim();
                                 }
 
                                 services.Add(wsDesc);
@@ -70,7 +81,7 @@ namespace WSSAT
                         file.Close();
                     }
                 }
-                lblSelectedFileName.Text = openFileDialog1.FileName;
+                lblSelectedFileName.Text = openFileDialog1.SafeFileName;
             }
         }
 
@@ -88,7 +99,7 @@ namespace WSSAT
                 reportObject.WsDescs = new List<WSDescriberForReport>();
                 reportObject.TotalRequestCount = 0;
 
-                Log("Scan Started: " + reportObject.ScanStartDate.ToString("dd.MM.yyyy HH:mm:ss"), FontStyle.Bold, true);
+                Log("Scan Started: " + reportObject.ScanStartDate.ToString("dd.MM.yyyy HH:mm:ss"), FontStyle.Bold, true, false);
 
                 foreach (WSDescriber wsDesc in services)
                 {
@@ -99,29 +110,37 @@ namespace WSSAT
                     WSItemVulnerabilities.StaticVulns = new List<StaticVulnerabilityForReport>();
                     WSItemVulnerabilities.InfoVulns = new List<DisclosureVulnerabilityForReport>();
 
-                    Log("WSDL Address: " + wsDesc.WSDLAddress, FontStyle.Bold, true);
-                    Log("Parsing WSDL...", FontStyle.Regular, true);
+                    Log("WSDL Address: " + wsDesc.WSDLAddress, FontStyle.Bold, true, false);
+                    Log("Parsing WSDL...", FontStyle.Regular, true, false);
 
                     List<Param> respHeader = new List<Param>();
 
                     bool untrustedSSLSecureChannel = false;
-                    Parser parser = new Parser(wsDesc, ref untrustedSSLSecureChannel, ref respHeader);
-
-                    if (chkStaticScan.Checked)
+                    Parser parser = null;
+                    try
                     {
-                        Log("Static Analysis Started", FontStyle.Regular, true);
+                        parser = new Parser(wsDesc, ref untrustedSSLSecureChannel, ref respHeader, CustomRequestHeader);
+                    }
+                    catch (Exception parseEx)
+                    {
+                        Log("WSDL Parsing Exception: " + parseEx.Message, FontStyle.Regular, true, false);
+                    }
+
+                    if (chkStaticScan.Checked && parser != null)
+                    {
+                        Log("Static Analysis Started", FontStyle.Regular, true, false);
 
                         StaticVulnerabilityScanner svs = new StaticVulnerabilityScanner();
 
                         foreach (StaticVulnerabilitiesStaticVulnerability staticVuln in staticVulnerabilities.StaticVulnerability)
                         {
-                            Log("   Testing: " + staticVuln.title, FontStyle.Regular, chkDebug.Checked);
+                            Log("   Testing: " + staticVuln.title, FontStyle.Regular, chkDebug.Checked, false);
 
                             string staticScanRes = svs.ScanIt(staticVuln, parser.rawWSDL);
 
                             if (!string.IsNullOrEmpty(staticScanRes))
                             {
-                                Log("   " + staticVuln.title + " Vulnerability Found: " + staticScanRes, FontStyle.Bold, true);
+                                Log("   " + staticVuln.title + " Vulnerability Found: " + staticScanRes, FontStyle.Bold, true, false);
                                 StaticVulnerabilityForReport vulnRep = new StaticVulnerabilityForReport();
                                 vulnRep.Vuln = staticVuln;
                                 vulnRep.XMLLine = staticScanRes;
@@ -130,78 +149,109 @@ namespace WSSAT
                             }
                         }
 
-                        Log("Static Analysis Finished", FontStyle.Regular, true);
+                        Log("Static Analysis Finished", FontStyle.Regular, true, false);
                     }
 
-                    if (chkDynamicScan.Checked)
+                    if (chkDynamicScan.Checked && parser != null)
                     {
-                        Log("Getting Methods...", FontStyle.Regular, true);
+                        Log("Getting Methods...", FontStyle.Regular, true, false);
                         List<WSOperation> operations = parser.GetOperations();
 
                         WebServiceToInvoke wsInvoker = new WebServiceToInvoke(wsDesc.WSDLAddress.Replace("?WSDL", ""));
 
                         if (!wsDesc.WSUri.Scheme.Equals("https"))
                         {
-                            Log(" Vulnerability Found - SSL Not Used, Uri Schema is " + wsDesc.WSUri.Scheme, FontStyle.Bold, true);
+                            Log(" Vulnerability Found - SSL Not Used, Uri Schema is " + wsDesc.WSUri.Scheme, FontStyle.Bold, true, false);
                             AddSSLRelatedVulnerability(WSItemVulnerabilities, 0);
                         }
                         else
                         {
                             if (untrustedSSLSecureChannel)
                             {
-                                Log(" Vulnerability Found - Could not establish trust relationship for the SSL/TLS secure channel.", FontStyle.Bold, true);
+                                Log(" Vulnerability Found - Could not establish trust relationship for the SSL/TLS secure channel.", FontStyle.Bold, true, false);
                                 AddSSLRelatedVulnerability(WSItemVulnerabilities, -1);
                             }
-                        }
+                        }                        
 
                         DynamicVulnerabilityScanner dynScn = new DynamicVulnerabilityScanner(this);
 
                         foreach (WSOperation operation in operations)
                         {
-                            Log("Method: " + operation.MethodName, FontStyle.Regular, chkDebug.Checked);
+                            Log("Method: " + operation.MethodName, FontStyle.Regular, chkDebug.Checked, false);
 
                             foreach (VulnerabilitiesVulnerability vuln in vulnerabilities.Vulnerability)
                             {
-                                if (vuln.id != 0 && vuln.id != 7) // 0 for insecure transport - ssl not used , 7 for verbose soap fault message
+                                if (vuln.type == 1 || vuln.type == 3) // 1: soap specific , 3: common for soap & rest
                                 {
-                                    wsInvoker.PreInvoke();
+                                    if (vuln.id != 0 && vuln.id != 7 && vuln.id != 9 && vuln.id != 10) // 0 for insecure transport - ssl not used , 7 for verbose soap fault message , 9 for HTTP Options , 10 for XST
+                                    {
+                                        wsInvoker.PreInvoke();
 
-                                    Log("   Testing: " + vuln.title, FontStyle.Regular, chkDebug.Checked);
-                                    Log("   Parameter Count: " + operation.Parameters.Count, FontStyle.Regular, chkDebug.Checked);
+                                        Log("   Testing: " + vuln.title, FontStyle.Regular, chkDebug.Checked, false);
+                                        Log("   Parameter Count: " + operation.Parameters.Count, FontStyle.Regular, chkDebug.Checked, false);
 
-                                    try
-                                    {
-                                        dynScn.ScanVulnerabilities(wsInvoker, operation, vuln, parser.TargetNameSpace, wsDesc, WSItemVulnerabilities, reportObject,
-                                            chkDebug.Checked, ref respHeader, txtCustomSoapHeaderTags.Text.Trim(), txtCustomSoapBodyTags.Text.Trim());
-                                    }
-                                    catch (System.Web.Services.Protocols.SoapException soapEx)
-                                    {
-                                        dynScn.SetSoapFaultException(operation, soapEx, WSItemVulnerabilities, chkDebug.Checked);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Log("   Exception: " + ex.ToString(), FontStyle.Regular, chkDebug.Checked);
+                                        try
+                                        {
+                                            dynScn.ScanVulnerabilities(wsInvoker, operation, vuln, parser.TargetNameSpace, wsDesc, WSItemVulnerabilities, reportObject,
+                                                chkDebug.Checked, ref respHeader, CustomSoapHeaderTags.Trim(), CustomSoapBodyTags.Trim(), CustomRequestHeader.Trim());
+                                        }
+                                        catch (System.Web.Services.Protocols.SoapException soapEx)
+                                        {
+                                            dynScn.SetSoapFaultException(operation, soapEx, WSItemVulnerabilities, chkDebug.Checked);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Log("   Exception: " + ex.ToString(), FontStyle.Regular, chkDebug.Checked, true);
+                                        }
                                     }
                                 }
                             }
+                        }
+
+                        try
+                        {
+                            VulnerabilitiesVulnerability optionsVuln = vulnerabilities.Vulnerability.Where(v => v.id == 9).FirstOrDefault();
+                            if (optionsVuln != null)
+                            {
+                                dynScn.CheckHTTPOptionsVulns(wsDesc, optionsVuln, WSItemVulnerabilities, reportObject,
+                                                chkDebug.Checked, ref respHeader, CustomRequestHeader);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Log("   CheckHTTPOptionsVulns - Exception: " + ex.ToString(), FontStyle.Regular, chkDebug.Checked, true);
+                        }
+
+                        try
+                        {
+                            VulnerabilitiesVulnerability xstVuln = vulnerabilities.Vulnerability.Where(v => v.id == 10).FirstOrDefault();
+                            if (xstVuln != null)
+                            {
+                                dynScn.CheckXSTVulns(wsDesc, xstVuln, WSItemVulnerabilities, reportObject,
+                                                chkDebug.Checked, ref respHeader, CustomRequestHeader);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Log("   CheckXSTVulns - Exception: " + ex.ToString(), FontStyle.Regular, chkDebug.Checked, true);
                         }
                     }
 
                     if (chkInfoDisclosure.Checked)
                     {
-                        Log("Information Disclosure Analysis Started", FontStyle.Regular, true);
+                        Log("Information Disclosure Analysis Started", FontStyle.Regular, true, false);
 
                         InformationDisclosureVulnerabilityScanner idvs = new InformationDisclosureVulnerabilityScanner(this);
 
                         foreach (InformationDisclosureVulnerability infoVuln in disclosureVulnerabilities.Vulnerability)
                         {
-                            Log("   Searching Response Header: " + infoVuln.title, FontStyle.Regular, chkDebug.Checked);
+                            Log("   Searching Response Header: " + infoVuln.title, FontStyle.Regular, chkDebug.Checked, false);
 
                             string infoScanRes = idvs.ScanIt(infoVuln, respHeader);
 
                             if (!string.IsNullOrEmpty(infoScanRes))
                             {
-                                Log("   " + infoVuln.title + " Information Disclosure Found: " + infoScanRes, FontStyle.Bold, true);
+                                Log("   " + infoVuln.title + " Information Disclosure Found: " + infoScanRes, FontStyle.Bold, true, false);
                                 DisclosureVulnerabilityForReport vulnRep = new DisclosureVulnerabilityForReport();
                                 vulnRep.Vuln = infoVuln;
                                 vulnRep.Value = infoScanRes;
@@ -210,7 +260,7 @@ namespace WSSAT
                             }
                         }
 
-                        Log("Information Disclosure Analysis Finished", FontStyle.Regular, true);
+                        Log("Information Disclosure Analysis Finished", FontStyle.Regular, true, false);
                     }
 
                     reportObject.WsDescs.Add(WSItemVulnerabilities);
@@ -218,19 +268,175 @@ namespace WSSAT
 
                 reportObject.ScanEndDate = DateTime.Now;
 
-                Log("Scan Finished: " + reportObject.ScanEndDate.ToString("dd.MM.yyyy HH:mm:ss"), FontStyle.Bold, true);
+                Log("Scan Finished: " + reportObject.ScanEndDate.ToString("dd.MM.yyyy HH:mm:ss"), FontStyle.Bold, true, false);
 
                 string reportFilePath = scanDirectory + @"\Report\Report.html";
+                string xmlFilePath = scanDirectory + @"\Report\Report.xml";
 
                 ReportHelper.CreateHTMLReport(reportObject, 
                     System.AppDomain.CurrentDomain.BaseDirectory + @"\ReportTemplates\HTMLReportTemplate.html",
-                    reportFilePath);
+                    reportFilePath, chkXMLReport.Checked, xmlFilePath);
 
                 Process.Start(reportFilePath);
+                if (chkXMLReport.Checked) Process.Start(xmlFilePath);
             }
             else
             {
                 MessageBox.Show("Please Select WSDL List File!!!");
+            }
+        }
+
+        public void ScanRESTApi(RESTApi restDesc)
+        {
+            if (restDesc != null)
+            {
+                lvResult.Items.Clear();
+
+                scanDirectory = DirectoryHelper.GetScanDirectoryName();
+                DirectoryHelper.CreateScanDirectory(scanDirectory);
+
+                ReportObject reportObject = new ReportObject();
+                reportObject.ScanStartDate = DateTime.Now;
+                reportObject.WsDescs = new List<WSDescriberForReport>();
+                reportObject.TotalRequestCount = 0;
+
+                Log("Scan Started: " + reportObject.ScanStartDate.ToString("dd.MM.yyyy HH:mm:ss"), FontStyle.Bold, true, false);
+
+                WSDescriberForReport WSItemVulnerabilities = new WSDescriberForReport();
+
+                WSItemVulnerabilities.RestAPI = restDesc;
+                WSItemVulnerabilities.StaticVulns = new List<StaticVulnerabilityForReport>();
+                WSItemVulnerabilities.Vulns = new List<VulnerabilityForReport>();
+                WSItemVulnerabilities.InfoVulns = new List<DisclosureVulnerabilityForReport>();
+
+                Log("API Address: " + restDesc.Url.AbsoluteUri, FontStyle.Bold, true, false);
+                Log("Parsing API...", FontStyle.Regular, true, false);
+
+                List<Param> respHeader = new List<Param>();
+
+                bool untrustedSSLSecureChannel = false;
+                RestParser restParser = new RestParser(ref restDesc);
+
+                if (chkDynamicScan.Checked)
+                {
+                    RestHTTPHelper HttpHelper = new RestHTTPHelper(ref restDesc, ref untrustedSSLSecureChannel, ref respHeader, CustomRequestHeader);
+
+                    if (!restDesc.Url.Scheme.Equals("https"))
+                    {
+                        Log(" Vulnerability Found - SSL Not Used, Uri Schema is " + restDesc.Url.Scheme, FontStyle.Bold, true, false);
+                        AddSSLRelatedVulnerability(WSItemVulnerabilities, 0);
+                    }
+                    else
+                    {
+                        if (untrustedSSLSecureChannel)
+                        {
+                            Log(" Vulnerability Found - Could not establish trust relationship for the SSL/TLS secure channel.", FontStyle.Bold, true, false);
+                            AddSSLRelatedVulnerability(WSItemVulnerabilities, -1);
+                        }
+                    }
+
+                    int paramCount = 0;
+                    paramCount = restDesc.UrlParameters != null ? restDesc.UrlParameters.Count : 0;
+                    paramCount += restDesc.PostParameters != null ? restDesc.PostParameters.Count : 0;
+
+                    RestDynamicVulnerabilityScanner restDynScn = new RestDynamicVulnerabilityScanner(this);
+
+                    foreach (VulnerabilitiesVulnerability vuln in vulnerabilities.Vulnerability)
+                    {
+                        if (vuln.type == 2 || vuln.type == 3) // 2: rest specific , 3: common for soap & rest
+                        {
+                            if (vuln.id != 0 && vuln.id != 9 && vuln.id != 10) // 0 for insecure transport - ssl not used , 9 for HTTP Options , 10 for XST
+                            {
+                                Log("   Testing: " + vuln.title, FontStyle.Regular, chkDebug.Checked, false);
+                                Log("   Parameter Count: " + (paramCount), FontStyle.Regular, chkDebug.Checked, false);
+
+                                try
+                                {
+                                    restDynScn.ScanVulnerabilities(vuln, restDesc, WSItemVulnerabilities, reportObject,
+                                    chkDebug.Checked, ref respHeader, HttpHelper, CustomRequestHeader);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log("   Exception: " + ex.ToString(), FontStyle.Regular, chkDebug.Checked, true);
+                                }
+                            }
+                        }
+                    }
+
+                    try
+                    {
+                        VulnerabilitiesVulnerability optionsVuln = vulnerabilities.Vulnerability.Where(v => v.id == 9).FirstOrDefault();
+                        if (optionsVuln != null)
+                        {
+                            restDynScn.CheckHTTPOptionsVulns(restDesc, optionsVuln, WSItemVulnerabilities, reportObject,
+                                                   chkDebug.Checked, ref respHeader, HttpHelper, CustomRequestHeader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log("   CheckHTTPOptionsVulns - Exception: " + ex.ToString(), FontStyle.Regular, chkDebug.Checked, true);
+                    }
+
+                    try
+                    {
+                        VulnerabilitiesVulnerability xstVuln = vulnerabilities.Vulnerability.Where(v => v.id == 10).FirstOrDefault();
+                        if (xstVuln != null)
+                        {
+                            restDynScn.CheckXSTVulns(restDesc, xstVuln, WSItemVulnerabilities, reportObject,
+                                                   chkDebug.Checked, ref respHeader, HttpHelper, CustomRequestHeader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log("   CheckXSTVulns - Exception: " + ex.ToString(), FontStyle.Regular, chkDebug.Checked, true);
+                    }
+                }
+
+                if (chkInfoDisclosure.Checked)
+                {
+                    Log("Information Disclosure Analysis Started", FontStyle.Regular, true, false);
+
+                    InformationDisclosureVulnerabilityScanner idvs = new InformationDisclosureVulnerabilityScanner(this);
+
+                    foreach (InformationDisclosureVulnerability infoVuln in disclosureVulnerabilities.Vulnerability)
+                    {
+                        Log("   Searching Response Header: " + infoVuln.title, FontStyle.Regular, chkDebug.Checked, false);
+
+                        string infoScanRes = idvs.ScanIt(infoVuln, respHeader);
+
+                        if (!string.IsNullOrEmpty(infoScanRes))
+                        {
+                            Log("   " + infoVuln.title + " Information Disclosure Found: " + infoScanRes, FontStyle.Bold, true, false);
+                            DisclosureVulnerabilityForReport vulnRep = new DisclosureVulnerabilityForReport();
+                            vulnRep.Vuln = infoVuln;
+                            vulnRep.Value = infoScanRes;
+
+                            WSItemVulnerabilities.InfoVulns.Add(vulnRep);
+                        }
+                    }
+
+                    Log("Information Disclosure Analysis Finished", FontStyle.Regular, true, false);
+                }
+
+                reportObject.WsDescs.Add(WSItemVulnerabilities);
+
+                reportObject.ScanEndDate = DateTime.Now;
+
+                Log("Scan Finished: " + reportObject.ScanEndDate.ToString("dd.MM.yyyy HH:mm:ss"), FontStyle.Bold, true, false);
+
+                string reportFilePath = scanDirectory + @"\Report\Report.html";
+                string xmlFilePath = scanDirectory + @"\Report\Report.xml";
+
+                ReportHelper.CreateHTMLReport(reportObject,
+                    System.AppDomain.CurrentDomain.BaseDirectory + @"\ReportTemplates\HTMLReportTemplate.html",
+                    reportFilePath, chkXMLReport.Checked, xmlFilePath);
+
+                Process.Start(reportFilePath);
+                if (chkXMLReport.Checked) Process.Start(xmlFilePath);
+            }
+            else
+            {
+                MessageBox.Show("Please Enter API Info!!!");
             }
         }
 
@@ -247,9 +453,9 @@ namespace WSSAT
             WSItemVulnerabilities.Vulns.Add(sslVuln);
         }
 
-        public void Log(string str, FontStyle fontStyle, bool displayInListView)
+        public void Log(string str, FontStyle fontStyle, bool displayInListView, bool isError)
         {
-            Logger.Log(scanDirectory + @"\Logs\", str);
+            Logger.Log(scanDirectory + @"\Logs\", str, isError);
 
             if (displayInListView)
             {
@@ -292,6 +498,65 @@ namespace WSSAT
             disclosureVulnerabilities = (DisclosureVulnerabilities)reader.Deserialize(file);
 
             file.Close();
+        }
+
+        private void btnCustomSoapTags_Click(object sender, EventArgs e)
+        {
+            ShowCustomSoapTagsForm();
+        }
+
+        private void addCustomSoapTagsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowCustomSoapTagsForm();
+        }
+
+        private void ShowCustomSoapTagsForm()
+        {
+            CustomSoapTagEntry frm = new CustomSoapTagEntry(CustomSoapHeaderTags, CustomSoapBodyTags);
+            frm.ShowDialog(this);
+        }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            ShowAboutForm();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowAboutForm();
+        }
+
+        private void ShowAboutForm()
+        {
+            AboutBox about = new AboutBox();
+            about.ShowDialog(this);
+        }
+
+        private void btnScanREST_Click(object sender, EventArgs e)
+        {
+            ShowRestFormScan();
+        }
+
+        private void scanRestServiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowRestFormScan();
+        }
+
+        private void ShowRestFormScan()
+        {
+            RESTInfoEntry frm = new RESTInfoEntry(this);
+            frm.ShowDialog(this);
+        }
+
+        private void addCustomRequestHeaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowCustomRequestHeaderForm();
+        }
+
+        private void ShowCustomRequestHeaderForm()
+        {
+            CustomRequestHeaderEntry frm = new CustomRequestHeaderEntry(CustomRequestHeader, UserAgentHeader);
+            frm.ShowDialog(this);
         }
     }
 }

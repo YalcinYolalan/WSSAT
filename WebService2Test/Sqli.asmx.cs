@@ -32,7 +32,7 @@ namespace WebService2Test
 
                 if (dr != null)
                 { 
-                    //username dön
+                    //return username
                     if (dr.Read())
                     {
                         result = dr["UserName"].ToString();
@@ -47,5 +47,7 @@ namespace WebService2Test
             }
             return result;
         }
+
+
     }
 }

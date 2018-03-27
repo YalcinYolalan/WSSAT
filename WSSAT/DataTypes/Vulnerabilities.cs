@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WSSAT.DataTypes
+﻿namespace WSSAT.DataTypes
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -44,6 +38,7 @@ namespace WSSAT.DataTypes
 
         private string severityField;
         private string statusCodeField;
+        private int typeField;
 
         private string[] requestField;
 
@@ -124,7 +119,17 @@ namespace WSSAT.DataTypes
                 this.statusCodeField = value;
             }
         }
-        
+        public int type
+        {
+            get
+            {
+                return this.typeField;
+            }
+            set
+            {
+                this.typeField = value;
+            }
+        }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("payload", IsNullable = false)]

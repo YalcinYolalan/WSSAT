@@ -42,9 +42,10 @@ namespace WSSAT.BusinessLayer
             Params.Add(new Param() { Name = name, Value = value });
         }
 
-        public void InvokeMethod(string methodName, string targetNameSpace, WSDescriber wsDesc, ref List<Param> respHeader, string customSoapHeaderTags, string customSoapBodyTags)
+        public void InvokeMethod(string methodName, string targetNameSpace, WSDescriber wsDesc, 
+            ref List<Param> respHeader, string customSoapHeaderTags, string customSoapBodyTags, string customRequestHeader)
         {
-            InvokeMethod(methodName, true, targetNameSpace, wsDesc, ref respHeader, customSoapHeaderTags, customSoapBodyTags);
+            InvokeMethod(methodName, true, targetNameSpace, wsDesc, ref respHeader, customSoapHeaderTags, customSoapBodyTags, customRequestHeader);
         }
 
         public void CleanLastInvoke()
@@ -69,23 +70,44 @@ namespace WSSAT.BusinessLayer
         {
             XmlNamespaceManager namespMan = new XmlNamespaceManager(new NameTable());
             namespMan.AddNamespace("foo", targetNameSpace);
-
             XElement webMethodResult = ResponseSOAP.XPathSelectElement("//foo:" + methodName + "Result", namespMan);
-            if (webMethodResult.FirstNode != null && webMethodResult.FirstNode.NodeType == XmlNodeType.Element)
-            {
-                ResultString = Utils.UnescapeString(Utils.RemoveNamespaces(XDocument.Parse(webMethodResult.FirstNode.ToString())).ToString());
-            }
-            else
+
+            if (webMethodResult != null)
             {
                 if (webMethodResult.FirstNode != null)
                 {
-                    ResultString = Utils.UnescapeString(webMethodResult.FirstNode.ToString());
+                    if (webMethodResult.FirstNode.NodeType == XmlNodeType.Element)
+                    {
+                        ResultString = Utils.UnescapeString(Utils.RemoveNamespaces(XDocument.Parse(webMethodResult.FirstNode.ToString())).ToString());
+                    }
+                    else
+                    {
+                        ResultString = Utils.UnescapeString(webMethodResult.FirstNode.ToString());
+                    }
+                }
+            }
+            else // Can not get web method result, try another way (especially web services written in PHP and Java)
+            {
+                XmlNamespaceManager namespMan2 = new XmlNamespaceManager(new NameTable());
+                namespMan.AddNamespace("wssat", "http://tempuri.org/");
+                XElement webMethodResponse = ResponseSOAP.XPathSelectElement("//wssat:" + methodName + "Response", namespMan);
+
+                if (webMethodResponse != null && webMethodResponse.FirstNode != null)
+                {
+                    if (webMethodResponse.FirstNode.NodeType == XmlNodeType.Element)
+                    {
+                        ResultString = Utils.UnescapeString(Utils.RemoveNamespaces(XDocument.Parse(webMethodResponse.FirstNode.ToString())).ToString());
+                    }
+                    else
+                    {
+                        ResultString = Utils.UnescapeString(webMethodResponse.FirstNode.ToString());
+                    }
                 }
             }
         }
 
         private void InvokeMethod(string methodName, bool encode, string targetNameSpace, WSDescriber wsDesc,
-            ref List<Param> respHeader, string customSoapHeaderTags, string customSoapBodyTags)
+            ref List<Param> respHeader, string customSoapHeaderTags, string customSoapBodyTags, string customRequestHeader)
         {
             AssertCanInvoke(methodName);
             string soapStr =
@@ -109,9 +131,17 @@ namespace WSSAT.BusinessLayer
             req.Accept = "text/xml";
             req.Method = "POST";
 
-            if (wsDesc != null && !string.IsNullOrEmpty(wsDesc.Username))
+            req.UserAgent = MainForm.UserAgentHeader;
+            //req.Connection = "keep-alive";
+
+            if (!string.IsNullOrEmpty(customRequestHeader))
             {
-                SetBasicAuthHeader(req, wsDesc.Username, wsDesc.Password);
+                req.Headers.Add(customRequestHeader);
+            }
+
+            if (wsDesc != null && wsDesc.BasicAuthentication != null && !string.IsNullOrEmpty(wsDesc.BasicAuthentication.Username))
+            {
+                SetBasicAuthHeader(req, wsDesc.BasicAuthentication.Username, wsDesc.BasicAuthentication.Password);
             }
 
             using (Stream stm = req.GetRequestStream())

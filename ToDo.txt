@@ -1,0 +1,116 @@
+
+
+
+Wiki yi update et - 
+	* Usage
+		Tek tek her ekran ve ekrandaki buton, checkbox vs. i anlat
+	* Home - REST API desteði vs. readme.md dekileri ekle
+	* Add REST API testing wiki file
+	* UPDATE: http://yalcinyolalan.github.io/WSSAT/
+
+
+--------------
+
+OK - Form u oluþtur
+OK - Dinamik zafiyet XML inde REST ile ilgili/ilgili deðil flag i
+OK - WEB API ile rest service yaz, SQLi, XSS için
+OK - Postman -$ Chrome da, test için
+OK - Scan metodu
+OK - Raporlama
+OK - Missing X-XSS-Protection Header
+OK - HTTP OPTIONS is enabled
+OK - Cross Site Tracing (XST) control added
+OK - Bug Fixes
+OK - XML Report Format Support
+OK - Add Custom Request Header (Cookie: JSESSIONID=.....) and User-Agent header
+OK - Damn Vulnerable Web Services : 
+	http://localhost:8080/dvws/
+	OK - SQLi : http://localhost:8080/dvws/vulnerabilities/sqli/api.php/users/$int$
+	WSDL Enum : http://localhost:8080/dvws/vulnerabilities/wsdlenum/service.php?wsdl
+OK - Exception and Scan log files are separated
+OK - WebGoat Exploit Et - java -jar sdsdsd -httpPort=9090
+	http://localhost:9090/WebGoat/services/WSDLScanning?WSDL
+	http://localhost:9090/WebGoat/services/SoapRequest?WSDL
+	http://localhost:9090/WebGoat/services/WsSqlInjection?WSDL
+
+TEST
+	OK - GET
+	OK - POST
+	OK - PUT
+	OK - DELETE
+	OK - Basic Authentication
+	OK - Farklý Content-Type lar
+	OK - SOAP servislerini bir test et
+		basic auth, ssl vs.
+
+	SSL
+	Complex Json Object test
+
+
+
+Rest Entry formunda parametreleri bulup $..$ içine otomatik aldýr !!
+----------------
+
+XSS Test : http://www.wstestapi.com/api/xss?txt=$string$
+SQLi Test : http://www.wstestapi.com/api/values/$int$
+SQLi Test : http://www.wstestapi.com/api/values/$int$/?a=$int$
+
+POST Data Test : http://www.wstestapi.com/api/values/save
+			{"Id":$int$,"Name":$string$}
+
+PUT Data Test : http://www.wstestapi.com/api/values/update?Id=$int$
+			{"Id":$int$,"Name":$string$}
+
+DELETE Data Test : http://www.wstestapi.com/api/values/delete?Id=$int$
+			{"Id":$int$,"Name":$string$}
+
+POST Data Test : http://www.wstestapi.com/api/values/saveuser
+{
+"Id":$int$,
+"Name":$string$,
+"Age":$int$,
+"Cars":[ $string$, $string$, $string$ ]
+}
+
+
+Basic Auth - test : 
+	http://www.wstestapiauth.com/api/xss?txt=$string$
+	http://www.wstestapiauth.com/api/values/$int$/?a=$int$
+
+----------------
+
+Ex: {"test":$int$,"test2":$string$}
+http://www.abc.com/$int$/test/$string$/?param=$double$&param2=$bool$
+---------
+{
+"name":$string$,
+"age":$int$,
+"cars":[ $string$, $string$, $string$ ]
+}
+--------
+{
+	"id": $int$,
+	"type": $string$,
+	"name": $string$,
+	"ppu": $decimal$,
+	"batters":
+		{
+			"batter":
+				[
+					{ "id": $int$, "type": $string$ },
+					{ "id": $int$, "type": $string$ },
+					{ "id": $int$, "type": $string$ },
+					{ "id": $int$, "type": $string$ }
+				]
+		},
+	"topping":
+		[
+			{ "id": $double$, "type": $bool$ },
+			{ "id": $bool$, "type": $string$ },
+			{ "id": $int$, "type": $string$ },
+			{ "id": $int$, "type": $string$ },
+			{ "id": $int$, "type": $string$ },
+			{ "id": $int$, "type": $string$ },
+			{ "id": $int$, "type": $string$ }
+		]
+}

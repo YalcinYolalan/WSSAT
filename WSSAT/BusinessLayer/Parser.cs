@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Services.Description;
 using System.Xml;
 using System.Xml.Linq;
@@ -27,9 +23,9 @@ namespace WSSAT.BusinessLayer
         public string TargetNameSpace { set; get; }
         public XDocument rawWSDL;
 
-        public Parser(WSDescriber wsDesc, ref bool untrustedSSLSecureChannel, ref List<Param> respHeader)
+        public Parser(WSDescriber wsDesc, ref bool untrustedSSLSecureChannel, ref List<Param> respHeader, string customRequestHeader)
         {
-            HttpWebRequest wr = GetHttpWebReq(wsDesc);
+            HttpWebRequest wr = GetHttpWebReq(wsDesc, customRequestHeader);
 
             HttpWebResponse wres = null;
             try
@@ -42,7 +38,7 @@ namespace WSSAT.BusinessLayer
                 {
                     ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
-                    wr = GetHttpWebReq(wsDesc);
+                    wr = GetHttpWebReq(wsDesc, customRequestHeader);
                     wres = (HttpWebResponse)wr.GetResponse();
 
                     untrustedSSLSecureChannel = true;
@@ -56,33 +52,48 @@ namespace WSSAT.BusinessLayer
                     respHeader.Add(new Param() { Name = wres.Headers.Keys[i].ToLowerInvariant(), Value = wres.Headers[i].ToLowerInvariant() });
                 }
 
-                StreamReader streamReader = new StreamReader(wres.GetResponseStream());
+                try
+                {
+                    StreamReader streamReader = new StreamReader(wres.GetResponseStream());
 
-                rawWSDL = XDocument.Parse(streamReader.ReadToEnd());
+                    rawWSDL = XDocument.Parse(streamReader.ReadToEnd());
 
-                TextReader myTextReader = new StringReader(rawWSDL.ToString());
-                serviceDescription = ServiceDescription.Read(myTextReader);
+                    TextReader myTextReader = new StringReader(rawWSDL.ToString());
+                    serviceDescription = ServiceDescription.Read(myTextReader);
 
-                TargetNameSpace = serviceDescription.TargetNamespace;
-                bindColl = serviceDescription.Bindings;
-                portTypColl = serviceDescription.PortTypes;
-                msgColl = serviceDescription.Messages;
-                types = serviceDescription.Types;
-                schemas = types.Schemas;
+                    TargetNameSpace = serviceDescription.TargetNamespace;
+                    bindColl = serviceDescription.Bindings;
+                    portTypColl = serviceDescription.PortTypes;
+                    msgColl = serviceDescription.Messages;
+                    types = serviceDescription.Types;
+                    schemas = types.Schemas;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
-        private HttpWebRequest GetHttpWebReq(WSDescriber wsDesc)
+        private HttpWebRequest GetHttpWebReq(WSDescriber wsDesc, string customRequestHeader)
         {
             HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(wsDesc.WSDLAddress);
+
+            wr.UserAgent = MainForm.UserAgentHeader;
+            //wr.Connection = "keep-alive";
 
             wr.Proxy = WebRequest.DefaultWebProxy;
             wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
             wr.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
 
-            if (!string.IsNullOrEmpty(wsDesc.Username))
+            if (!string.IsNullOrEmpty(customRequestHeader))
             {
-                wr.Credentials = new NetworkCredential(wsDesc.Username, wsDesc.Password);
+                wr.Headers.Add(customRequestHeader);
+            }
+
+            if (wsDesc.BasicAuthentication != null && !string.IsNullOrEmpty(wsDesc.BasicAuthentication.Username))
+            {
+                wr.Credentials = new NetworkCredential(wsDesc.BasicAuthentication.Username, wsDesc.BasicAuthentication.Password);
             }
 
             return wr;
@@ -91,47 +102,49 @@ namespace WSSAT.BusinessLayer
         public List<WSOperation> GetOperations()
         {
             List<WSOperation> lst = new List<WSOperation>();
-
-            foreach (Service ser in serviceDescription.Services)
+            if (serviceDescription != null)
             {
-                String webServiceName = ser.Name.ToString();
-                foreach (Port port in ser.Ports)
+                foreach (Service ser in serviceDescription.Services)
                 {
-                    string portName = port.Name;
-                    string binding = port.Binding.Name;
-                    Binding bind = bindColl[binding];
-
-                    if (bind != null)
+                    String webServiceName = ser.Name.ToString();
+                    foreach (Port port in ser.Ports)
                     {
-                        PortType portTyp = portTypColl[bind.Type.Name];
+                        string portName = port.Name;
+                        string binding = port.Binding.Name;
+                        Binding bind = bindColl[binding];
 
-                        foreach (Operation op in portTyp.Operations)
+                        if (bind != null)
                         {
-                            WSOperation operObj = new WSOperation();
-                            operObj.ClassName = webServiceName;
-                            operObj.MethodName = op.Name;
+                            PortType portTyp = portTypColl[bind.Type.Name];
 
-                            if (lst.Where(it => it.ClassName.Equals(operObj.ClassName) && it.MethodName.Equals(operObj.MethodName)).Count() == 0)
+                            foreach (Operation op in portTyp.Operations)
                             {
-                                OperationMessageCollection opMsgColl = op.Messages;
-                                OperationInput opInput = opMsgColl.Input;
-                                OperationOutput opOutput = opMsgColl.Output;
-                                string inputMsg = opInput.Message.Name;
-                                string outputMsg = opOutput.Message.Name;
+                                WSOperation operObj = new WSOperation();
+                                operObj.ClassName = webServiceName;
+                                operObj.MethodName = op.Name;
 
-                                Message msgInput = msgColl[inputMsg];
-                                List<WSParameter> InputParam = GetParameters(msgInput);
-
-                                Message msgOutput = msgColl[outputMsg];
-                                List<WSParameter> OutputParams = GetParameters(msgOutput);
-
-                                operObj.Parameters = InputParam;
-                                if (OutputParams != null && OutputParams.Count > 0)
+                                if (lst.Where(it => it.ClassName.Equals(operObj.ClassName) && it.MethodName.Equals(operObj.MethodName)).Count() == 0)
                                 {
-                                    operObj.ReturnType = OutputParams[0].TypeName;
-                                }
+                                    OperationMessageCollection opMsgColl = op.Messages;
+                                    OperationInput opInput = opMsgColl.Input;
+                                    OperationOutput opOutput = opMsgColl.Output;
+                                    string inputMsg = opInput.Message.Name;
+                                    string outputMsg = opOutput.Message.Name;
 
-                                lst.Add(operObj);
+                                    Message msgInput = msgColl[inputMsg];
+                                    List<WSParameter> InputParam = GetParameters(msgInput);
+
+                                    Message msgOutput = msgColl[outputMsg];
+                                    List<WSParameter> OutputParams = GetParameters(msgOutput);
+
+                                    operObj.Parameters = InputParam;
+                                    if (OutputParams != null && OutputParams.Count > 0)
+                                    {
+                                        operObj.ReturnType = OutputParams[0].TypeName;
+                                    }
+
+                                    lst.Add(operObj);
+                                }
                             }
                         }
                     }
@@ -145,32 +158,44 @@ namespace WSSAT.BusinessLayer
             List<WSParameter> parameters = new List<WSParameter>();
             foreach (MessagePart msgpart in msg.Parts)
             {
-
-                XmlQualifiedName typName = msgpart.Element;
-
-                XmlSchemaElement lookup = (XmlSchemaElement)schemas.Find(typName, typeof(XmlSchemaElement));
-
-                if (lookup != null)
+                if (!msgpart.Element.IsEmpty)
                 {
-                    XmlSchemaComplexType tt = (XmlSchemaComplexType)lookup.SchemaType;
+                    XmlQualifiedName typName = msgpart.Element;
 
-                    XmlSchemaSequence sequence = (XmlSchemaSequence)tt.Particle;
-                    //int i = 0;
-                    if (sequence != null)
+                    XmlSchemaElement lookup = (XmlSchemaElement)schemas.Find(typName, typeof(XmlSchemaElement));
+
+                    if (lookup != null)
                     {
-                        foreach (XmlSchemaElement childElement in sequence.Items)
-                        {
-                            WSParameter param = new WSParameter();
-                            param.Name = childElement.Name;
-                            param.TypeName = childElement.SchemaTypeName.Name;
-                            param.MinOccurs = childElement.MinOccurs;
-                            param.MaxOccurs = childElement.MaxOccurs.ToString();
+                        XmlSchemaComplexType tt = (XmlSchemaComplexType)lookup.SchemaType;
 
-                            parameters.Add(param);
-                            //ParameterAndType.Add(childElement.Name, childElement.SchemaTypeName.Name);
-                            //Console.WriteLine("Element: {0} ,{1}", childElement.Name,childElement.SchemaTypeName.Name);
+                        XmlSchemaSequence sequence = (XmlSchemaSequence)tt.Particle;
+                        //int i = 0;
+                        if (sequence != null)
+                        {
+                            foreach (XmlSchemaElement childElement in sequence.Items)
+                            {
+                                WSParameter param = new WSParameter();
+                                param.Name = childElement.Name;
+                                param.TypeName = childElement.SchemaTypeName.Name;
+                                param.MinOccurs = childElement.MinOccurs;
+                                param.MaxOccurs = childElement.MaxOccurs.ToString();
+
+                                parameters.Add(param);
+                                //ParameterAndType.Add(childElement.Name, childElement.SchemaTypeName.Name);
+                                //Console.WriteLine("Element: {0} ,{1}", childElement.Name,childElement.SchemaTypeName.Name);
+                            }
                         }
                     }
+                }
+                else
+                {
+                    WSParameter param = new WSParameter();
+                    param.Name = msgpart.Name;
+                    param.TypeName = msgpart.Type.Name;
+                    param.MinOccurs = 0;
+                    param.MaxOccurs = "0";
+
+                    parameters.Add(param);
                 }
             }
 

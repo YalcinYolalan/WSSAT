@@ -10,6 +10,7 @@
     <link>https://www.owasp.org/index.php/Testing_for_Web_Application_Fingerprint_%28OWASP-IG-004%29</link>
     <tagName>Server</tagName>
     <severity>Info</severity>
+    <missing>0</missing>
   </Vulnerability>
   <Vulnerability>
     <id>2</id>
@@ -21,6 +22,7 @@
     <link>https://www.owasp.org/index.php/Information_Leakage</link>
     <tagName>X-Powered-By</tagName>
     <severity>Info</severity>
+    <missing>0</missing>
   </Vulnerability>
   <Vulnerability>
     <id>3</id>
@@ -32,6 +34,7 @@
     <link>https://www.owasp.org/index.php/Information_Leakage</link>
     <tagName>X-AspNet-Version</tagName>
     <severity>Info</severity>
+    <missing>0</missing>
   </Vulnerability>
   <Vulnerability>
     <id>4</id>
@@ -43,6 +46,7 @@
     <link>https://www.owasp.org/index.php/Information_Leakage</link>
     <tagName>X-AspNetMvc-Version</tagName>
     <severity>Info</severity>
+    <missing>0</missing>
   </Vulnerability>
   <Vulnerability>
     <id>5</id>
@@ -54,6 +58,7 @@
     <link>https://www.owasp.org/index.php/Information_Leakage</link>
     <tagName>X-Runtime</tagName>
     <severity>Info</severity>
+    <missing>0</missing>
   </Vulnerability>
   <Vulnerability>
     <id>6</id>
@@ -65,6 +70,7 @@
     <link>https://www.owasp.org/index.php/Information_Leakage</link>
     <tagName>X-Version</tagName>
     <severity>Info</severity>
+    <missing>0</missing>
   </Vulnerability>
   <Vulnerability>
     <id>7</id>
@@ -76,5 +82,18 @@
     <link>https://www.owasp.org/index.php/Information_Leakage</link>
     <tagName>Allow</tagName>
     <severity>Info</severity>
+    <missing>0</missing>
+  </Vulnerability>
+  <Vulnerability>
+    <id>8</id>
+    <title>Enable X-XSS-Protection Header</title>
+    <description>
+      This header enables the Cross-site scripting (XSS) filter in your browser. 
+      Set X-XSS-Protection: 1; mode=block
+    </description>
+    <link>https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xxxsp</link>
+    <tagName>X-XSS-Protection</tagName>
+    <severity>Info</severity>
+    <missing>1</missing>
   </Vulnerability>
 </DisclosureVulnerabilities>

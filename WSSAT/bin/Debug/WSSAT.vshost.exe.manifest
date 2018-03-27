@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="WSSAT.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="WSSAT" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="WSSAT" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="WSSAT.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="58816">
-      <assemblyIdentity name="WSSAT" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="125440">
+      <assemblyIdentity name="WSSAT" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2sypcjkAAcqTfWzFZCHVpbiPd+bQqYtAt4EdhQO7zVU=</dsig:DigestValue>
+        <dsig:DigestValue>mLG+y6Z4/ozOElD7IwZmcUFyZ84ik0TEaUfAMEbGHFE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -116,58 +116,58 @@
       <dsig:DigestValue>wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ReportTemplates\HTMLReportTemplate.html" size="4421">
+  <file name="ReportTemplates\HTMLReportTemplate.html" size="4310">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>WAsEowJFD0mS2nHm88hVOZGkggYIvjqQf0UtCOKQpFs=</dsig:DigestValue>
+      <dsig:DigestValue>45+zWhcgZckipNYVImVIXJTpfm+mlOXGYN6CWrBP1kI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="wsdls.txt" size="247">
+  <file name="wsdls.txt" size="647">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ZAXmcWM42sPMMKhwxdXIRVdTxod/tKkEAWfcLwb5OPI=</dsig:DigestValue>
+      <dsig:DigestValue>fLtVKdYvc8SwKSl+FNPUGZ1Ldc4LjQhUG/YxJEabmCM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="WSSAT.exe.config" size="187">
+  <file name="WSSAT.exe.config" size="261">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+      <dsig:DigestValue>mxcZCQAmAD0HLXbGE6VJcvR8d2RBYoJTUcq6h13L9sA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="XML\DisclosureVulnerabilities.xml" size="3378" writeableType="applicationData">
+  <file name="XML\DisclosureVulnerabilities.xml" size="3916" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>1thjaJjAIhUDbQD7/HWKBjomVU2ey7qwVbNgWaPw/l4=</dsig:DigestValue>
+      <dsig:DigestValue>EHy//U7enFvVki+G1gx8DfVp1mWS5b3hLjRauTOFV2k=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="XML\StaticVulnerabilities.xml" size="6402" writeableType="applicationData">
+  <file name="XML\StaticVulnerabilities.xml" size="6275" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>VhhxTJz+cfbJAy5ZxKYqnTk9F9Lmwms4sS4+J13FDJc=</dsig:DigestValue>
+      <dsig:DigestValue>umWejZqLygpuFojsPddCvSBGnQDZJqmPw7+ddOqf2w8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="XML\Vulnerabilities.xml" size="10769" writeableType="applicationData">
+  <file name="XML\Vulnerabilities.xml" size="12629" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>NmkXVCOgKxDyunSTByYiBYe6aWmNXHtLe+C5Aqd2PAk=</dsig:DigestValue>
+      <dsig:DigestValue>MGnid+2aHU1Db0gy8bQIDHBtRds7bqoxJzt4D+Tv1jM=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

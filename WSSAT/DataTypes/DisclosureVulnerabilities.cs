@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WSSAT.DataTypes
+﻿namespace WSSAT.DataTypes
 {
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -43,6 +37,7 @@ namespace WSSAT.DataTypes
         private string linkField;
 
         private string tagNameField;
+        private int missingField;
 
         private string severityField;
 
@@ -108,6 +103,18 @@ namespace WSSAT.DataTypes
             set
             {
                 this.tagNameField = value;
+            }
+        }
+
+        public int missing
+        {
+            get
+            {
+                return this.missingField;
+            }
+            set
+            {
+                this.missingField = value;
             }
         }
 
