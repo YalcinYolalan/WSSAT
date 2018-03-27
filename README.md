@@ -43,8 +43,8 @@ With this tool, all web services could be analysed at once and the overall secur
 * Report Generator
 
 **Installation & Usage**
-* [Installation](https://github.com/YalcinYolalan/WSSAT/wiki/Installation)
-* [Usage](https://github.com/YalcinYolalan/WSSAT/wiki/USAGE)
+* [Installation] (https://github.com/YalcinYolalan/WSSAT/wiki/Installation)
+* [Usage] (https://github.com/YalcinYolalan/WSSAT/wiki/USAGE)
 
 The main difference of WSSAT is to create a dynamic vulnerability management environment instead of embedding the vulnerabilities into the code.
 
