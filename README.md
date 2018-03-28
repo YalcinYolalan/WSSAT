@@ -8,7 +8,7 @@ With this tool, all web services could be analysed at once and the overall secur
 * Harden their web services
 
 # WSSAT 2.0
-**REST API** scanning support was added with same dynamic environment philosophy as SOAP services. [ChangeLog](https://github.com/YalcinYolalan/WSSAT/blob/master/CHANGELOG.md)
+**REST API** scanning support was added with same dynamic vulnerability management environment philosophy as SOAP services. [ChangeLog](https://github.com/YalcinYolalan/WSSAT/blob/master/CHANGELOG.md)
 
 **WSSAT’s main capabilities include:**
 
