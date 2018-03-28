@@ -48,5 +48,5 @@ With this tool, all web services could be analysed at once and the overall secur
 
 The main difference of WSSAT is to create a dynamic vulnerability management environment instead of embedding the vulnerabilities into the code.
 
-_This project has been developed as Term Project at Middle East Technical University (METU), Software Management master program._
+_This project has been started as Term Project at Middle East Technical University (METU), Software Management master program._
 
