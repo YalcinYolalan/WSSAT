@@ -13,9 +13,14 @@
 - About form.
 - Custom SOAP header & body tag entry form.
 - Custom HTTP header & UserAgent entry form (especially to add custom cookie such as "Cookie: JSESSIONID=.....".
+- This CHANGELOG document.
 
 ### Changed
 - Visual Improvement.
 - Tested with "Damn Vulnerable Web Services" and some bugs are fixed.
 - Tested with "OWASP WebGoat web services" and some bugs are fixed.
 - Exception and Scan log files are separated.
+- README.md
+- Project Wiki https://github.com/YalcinYolalan/WSSAT/wiki
+- Project Homepage http://yalcinyolalan.github.io/WSSAT/
+- Project v2.0 release published.
