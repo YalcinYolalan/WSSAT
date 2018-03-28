@@ -13,6 +13,7 @@ packages/jQuery.1.10.2/Content/Scripts/* linguist-vendored
 
 # Custom for Visual Studio
 *.cs     diff=csharp
+*.asmx   diff=csharp
 
 # Standard to msysgit
 *.doc  diff=astextplain
