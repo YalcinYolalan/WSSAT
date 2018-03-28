@@ -13,7 +13,7 @@
 - About form.
 - Custom SOAP header & body tag entry form.
 - Custom HTTP header & UserAgent entry form (especially to add custom cookie such as "Cookie: JSESSIONID=.....".
-- This CHANGELOG document.
+- CHANGELOG.md
 
 ### Changed
 - Visual Improvement.
