@@ -4,8 +4,9 @@ static/* linguist-vendored
 
 #*.js     linguist-language=csharp
 
-WSSAT/WSSAT/Accordion/* linguist-vendored
-WSSAT/WSSAT/PieChart/* linguist-vendored
+WSSAT/Accordion/* linguist-vendored
+WSSAT/PieChart/* linguist-vendored
+packages/* linguist-vendored
 
 # Custom for Visual Studio
 *.cs     diff=csharp
