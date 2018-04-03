@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="125952">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="127488">
       <assemblyIdentity name="WSSAT" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>H37y0TLyIwZAsXWriHmsSbMMioD3yCI7e4NE4Qlcty4=</dsig:DigestValue>
+        <dsig:DigestValue>ew1M+ADoNRwXTwtqedF1obYsLETACZK7AhoHV7rM3V8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

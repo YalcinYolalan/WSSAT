@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using WSSAT.DataTypes;
 
@@ -69,6 +70,67 @@ namespace WSSAT
                     txtPwd.Text = restAPI.BasicAuthentication.Password;
                 }
             }
+        }
+
+        private void btnFormat_Click(object sender, EventArgs e)
+        {
+            string postData = txtPostData.Text.Trim();
+
+            if (!string.IsNullOrEmpty(postData))
+            {
+                string result = GetFormattedValues(postData);
+
+                if (!string.IsNullOrEmpty(result))
+                {
+                    txtPostData.Text = result;
+                }
+            }
+        }
+
+        private string GetFormattedValues(string postData)
+        {
+            return Regex.Replace(
+                          postData,
+                          @"(¤(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\¤])*¤(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)".Replace('¤', '"'),
+                          match => {
+                              var cls = "int";
+                              if (Regex.IsMatch(match.Value, @"^¤".Replace('¤', '"')))
+                              {
+                                  if (Regex.IsMatch(match.Value, ":$"))
+                                  {
+                                      cls = "key";
+                                  }
+                                  else
+                                  {
+                                      int tmp = 0;
+                                      if (int.TryParse(match.Value.Replace("\"", ""), out tmp))
+                                      {
+                                          cls = "int";
+                                      }
+                                      else
+                                      {
+                                          cls = "string";
+                                      }
+                                  }
+                              }
+                              else if (Regex.IsMatch(match.Value, "true|false"))
+                              {
+                                  cls = "bool";
+                              }
+                              else if (Regex.IsMatch(match.Value, "null"))
+                              {
+                                  cls = "string";
+                              }
+                              //return "<span class=\"" + cls + "\">" + match + "</span>";
+                              if (cls.Equals("key"))
+                              {
+                                  return match.ToString();
+                              }
+                              else
+                              {
+                                  return "$" + cls + "$";
+                              }
+                          });
         }
     }
 }

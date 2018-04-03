@@ -44,6 +44,7 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnScan = new System.Windows.Forms.Button();
+            this.btnFormat = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -208,12 +209,23 @@
             this.btnScan.UseVisualStyleBackColor = false;
             this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
+            // btnFormat
+            // 
+            this.btnFormat.Location = new System.Drawing.Point(552, 153);
+            this.btnFormat.Name = "btnFormat";
+            this.btnFormat.Size = new System.Drawing.Size(213, 33);
+            this.btnFormat.TabIndex = 32;
+            this.btnFormat.Text = "Try To Format Post JSON Data";
+            this.btnFormat.UseVisualStyleBackColor = false;
+            this.btnFormat.Click += new System.EventHandler(this.btnFormat_Click);
+            // 
             // RESTInfoEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(779, 463);
+            this.Controls.Add(this.btnFormat);
             this.Controls.Add(this.btnScan);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cmbContentTypes);
@@ -261,5 +273,6 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnScan;
+        private System.Windows.Forms.Button btnFormat;
     }
 }
