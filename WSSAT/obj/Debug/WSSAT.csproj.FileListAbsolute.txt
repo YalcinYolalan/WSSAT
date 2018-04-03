@@ -44,3 +44,4 @@ C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.application
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.exe
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.pdb
+C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.csprojResolveAssemblyReference.cache

@@ -61,7 +61,7 @@
             // 
             this.txtURL.Location = new System.Drawing.Point(109, 24);
             this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(436, 22);
+            this.txtURL.Size = new System.Drawing.Size(423, 22);
             this.txtURL.TabIndex = 20;
             // 
             // label2
@@ -103,7 +103,7 @@
             this.txtPostData.Multiline = true;
             this.txtPostData.Name = "txtPostData";
             this.txtPostData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtPostData.Size = new System.Drawing.Size(435, 104);
+            this.txtPostData.Size = new System.Drawing.Size(422, 104);
             this.txtPostData.TabIndex = 24;
             // 
             // label4
@@ -118,10 +118,10 @@
             // label6
             // 
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(556, 24);
+            this.label6.Location = new System.Drawing.Point(540, 24);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(220, 76);
+            this.label6.Size = new System.Drawing.Size(236, 76);
             this.label6.TabIndex = 27;
             this.label6.Text = "Ex: http://www.wstestapi.com/$int$/test/$string$/?param=$double$&&param2=$bool$";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -211,11 +211,11 @@
             // 
             // btnFormat
             // 
-            this.btnFormat.Location = new System.Drawing.Point(552, 153);
+            this.btnFormat.Location = new System.Drawing.Point(539, 153);
             this.btnFormat.Name = "btnFormat";
-            this.btnFormat.Size = new System.Drawing.Size(213, 33);
+            this.btnFormat.Size = new System.Drawing.Size(226, 33);
             this.btnFormat.TabIndex = 32;
-            this.btnFormat.Text = "Try To Format Post JSON Data";
+            this.btnFormat.Text = "Try To Format JSON Post Data";
             this.btnFormat.UseVisualStyleBackColor = false;
             this.btnFormat.Click += new System.EventHandler(this.btnFormat_Click);
             // 
