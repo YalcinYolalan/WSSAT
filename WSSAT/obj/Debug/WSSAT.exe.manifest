@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>X1u2dl8Z6j/da9n9h7kM5nhM0zqTo96uqfpYvhX1xPk=</dsig:DigestValue>
+        <dsig:DigestValue>H37y0TLyIwZAsXWriHmsSbMMioD3yCI7e4NE4Qlcty4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -116,13 +116,13 @@
       <dsig:DigestValue>IGOONj/MUVIVXySygTA+F9pi2mLSTvXc+GOxhNmiVzQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ReportTemplates\HTMLReportTemplate.html" size="4421">
+  <file name="ReportTemplates\HTMLReportTemplate.html" size="4505">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>WAsEowJFD0mS2nHm88hVOZGkggYIvjqQf0UtCOKQpFs=</dsig:DigestValue>
+      <dsig:DigestValue>IxQcyM4WJIYPkI3sAZ9m/wl7s2sC2nzlCgZHcprN1k4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="WSSAT.exe.config" size="265">

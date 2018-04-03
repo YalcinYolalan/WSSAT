@@ -26,6 +26,7 @@
             color: #000;
             padding: 7px 15px;
         }
+
         #tbl4 .accordion div.arrow {
             background: transparent url(../../../../Accordion/arrows.png) no-repeat scroll 0px 0px;
             width: 16px;
@@ -33,9 +34,9 @@
             display: block;
         }
 
-        #tbl4 .accordion div.arrow .up {
-            background-position: 0px 0px;
-        }
+            #tbl4 .accordion div.arrow .up {
+                background-position: 0px 0px;
+            }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -93,7 +94,7 @@
         </tr>
         <tr>
             <td style="border-style:solid; color:maroon">Vulnerability Count:<b>{TotalVulnCount}</b></td>
-            <td style="border-style:solid; color:maroon">Duration(Mnt):<b>{ScanDuration}</b>&nbsp;&nbsp;Scan Started:<b>{ScanStartDate}</b>&nbsp;&nbsp;Total Request Count:<b>{TotalRequestCount}</b></td>
+            <td style="border-style:solid; color:maroon">Duration(Mnt):<b>{ScanDuration}</b>&nbsp;&nbsp;Scan Started:<b>{ScanStartDate}</b>&nbsp;&nbsp;Total Request Count:<b>{TotalRequestCount}</b>&nbsp;&nbsp;<span style="font-size:smaller">XML Report:<b>{XMLReportPath}</b></span></td>
         </tr>
     </table>
     <table style="width:100%;background: #eff6fc" id="tbl2">

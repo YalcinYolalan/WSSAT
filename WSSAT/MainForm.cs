@@ -275,12 +275,19 @@ namespace WSSAT
                 string reportFilePath = scanDirectory + @"\Report\Report.html";
                 string xmlFilePath = scanDirectory + @"\Report\Report.xml";
 
+                string reportTemplatePath = System.AppDomain.CurrentDomain.BaseDirectory + 
+                    @"\ReportTemplates\HTMLReportTemplate.html";
+
                 ReportHelper.CreateHTMLReport(reportObject, 
-                    System.AppDomain.CurrentDomain.BaseDirectory + @"\ReportTemplates\HTMLReportTemplate.html",
+                    reportTemplatePath,
                     reportFilePath, chkXMLReport.Checked, xmlFilePath);
 
+                //if (chkXMLReport.Checked)
+                //{
+                //    Process.Start("cmd.exe /c notepad.exe " + xmlFilePath);
+                //}
+
                 Process.Start(reportFilePath);
-                if (chkXMLReport.Checked) Process.Start(xmlFilePath);
             }
             else
             {
@@ -429,12 +436,17 @@ namespace WSSAT
                 string reportFilePath = scanDirectory + @"\Report\Report.html";
                 string xmlFilePath = scanDirectory + @"\Report\Report.xml";
 
+                //string reportTemplatePath = System.AppDomain.CurrentDomain.BaseDirectory + @"\..\..\ReportTemplates\HTMLReportTemplate.html";
+
+                string reportTemplatePath = System.AppDomain.CurrentDomain.BaseDirectory +
+                        @"\ReportTemplates\HTMLReportTemplate.html";
+
                 ReportHelper.CreateHTMLReport(reportObject,
-                    System.AppDomain.CurrentDomain.BaseDirectory + @"\ReportTemplates\HTMLReportTemplate.html",
+                    reportTemplatePath,
                     reportFilePath, chkXMLReport.Checked, xmlFilePath);
 
                 Process.Start(reportFilePath);
-                if (chkXMLReport.Checked) Process.Start(xmlFilePath);
+                //if (chkXMLReport.Checked) Process.Start(xmlFilePath);
             }
             else
             {
@@ -472,6 +484,15 @@ namespace WSSAT
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // no smaller than design time size
+            this.MinimumSize = new System.Drawing.Size(this.Width, this.Height);
+
+            // no larger than screen size
+            this.MaximumSize = new System.Drawing.Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+
+            this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
             vulnerabilities = new Vulnerabilities();
             System.Xml.Serialization.XmlSerializer reader = new
                System.Xml.Serialization.XmlSerializer(vulnerabilities.GetType());

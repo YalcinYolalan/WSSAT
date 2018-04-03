@@ -21,6 +21,12 @@ namespace WSSAT.Helpers
             htmlContent = htmlContent.Replace("{ScanDuration}", reportObject.Duration.ToString("N2"));
             htmlContent = htmlContent.Replace("{ScanStartDate}", reportObject.ScanStartDate.ToString("dd.MM.yyyy HH:mm:ss"));
             htmlContent = htmlContent.Replace("{TotalRequestCount}", reportObject.TotalRequestCount.ToString());
+            string xmlReportPath = "-";
+            if (alsoCreateAnXMLReport)
+            {
+                xmlReportPath = "<a href='Report.xml' target='_blank'>Report.xml</a>";
+            }
+            htmlContent = htmlContent.Replace("{XMLReportPath}", xmlReportPath);
 
             double totalStaticVulnCount = 0;
             double totalDynamicVulnCount = 0;
