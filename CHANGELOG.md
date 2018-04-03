@@ -24,3 +24,4 @@
 - Project Wiki https://github.com/YalcinYolalan/WSSAT/wiki
 - Project Homepage http://yalcinyolalan.github.io/WSSAT/
 - Project v2.0 release published.
+- .Net Framework Upgrade to 4.7  
