@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="125440">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WSSAT.exe" size="125952">
       <assemblyIdentity name="WSSAT" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mLG+y6Z4/ozOElD7IwZmcUFyZ84ik0TEaUfAMEbGHFE=</dsig:DigestValue>
+        <dsig:DigestValue>X1u2dl8Z6j/da9n9h7kM5nhM0zqTo96uqfpYvhX1xPk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -62,112 +62,103 @@
       <dsig:DigestValue>9A+9irKMWLbEwVDVsz77ZsEH93AFhjmKL7yupJ8gXtE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Accordion\jquery-ui.css" size="34459">
+  <file name="Accordion\jquery-ui.css" size="35684">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>DwIafP3iMJgGvTXYsRgcFDaQrb04dXrdFKywUApUszY=</dsig:DigestValue>
+      <dsig:DigestValue>PH/8eeGtVDH7NlnlRpxytnx/aumIbGP3maPOgza5GJ8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Accordion\jquery-ui.js" size="470591">
+  <file name="Accordion\jquery-ui.js" size="487207">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>iLOrF0Nm71Bxa5+fbqhCfzV8Oo/P3esF7wOEMmHxY+U=</dsig:DigestValue>
+      <dsig:DigestValue>KZpXP1E0EcmdxD9qoQQLXwIx0EucR1PNTny0No4GMrQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PieChart\jqplot.pieRenderer.js" size="35543">
+  <file name="PieChart\jqplot.pieRenderer.js" size="36446">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>4UKOMTpBvV5CyCkhUCSpgaLRP3kS4INrRthm6+5Lt+w=</dsig:DigestValue>
+      <dsig:DigestValue>x7QC0ztkc2FQAcXKKDR0Lpa0Gcknl9l60EykiYZLy3A=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PieChart\jquery.jqplot.css" size="5624">
+  <file name="PieChart\jquery.jqplot.css" size="5883">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Q1alT83XUxak+NW5NpfrADVZ/SWQtbDh8nD38N3WAbI=</dsig:DigestValue>
+      <dsig:DigestValue>NeANUTRAMi9s0JjQZyFylRY8+jw+zo7K/X5xPMRtEzg=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PieChart\jquery.jqplot.js" size="466621">
+  <file name="PieChart\jquery.jqplot.js" size="478032">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>VOkdVbam7jt+re6vPGuPN1N2+fyzYbST7Wd6iKrW0WI=</dsig:DigestValue>
+      <dsig:DigestValue>e87xFgPuuMsQEFYveEJe7cLsqPyQJ/dTODL+03qkM+Y=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PieChart\jquery.min.js" size="92629">
+  <file name="PieChart\jquery.min.js" size="92633">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=</dsig:DigestValue>
+      <dsig:DigestValue>IGOONj/MUVIVXySygTA+F9pi2mLSTvXc+GOxhNmiVzQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ReportTemplates\HTMLReportTemplate.html" size="4310">
+  <file name="ReportTemplates\HTMLReportTemplate.html" size="4421">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>45+zWhcgZckipNYVImVIXJTpfm+mlOXGYN6CWrBP1kI=</dsig:DigestValue>
+      <dsig:DigestValue>WAsEowJFD0mS2nHm88hVOZGkggYIvjqQf0UtCOKQpFs=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="wsdls.txt" size="647">
+  <file name="WSSAT.exe.config" size="265">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>fLtVKdYvc8SwKSl+FNPUGZ1Ldc4LjQhUG/YxJEabmCM=</dsig:DigestValue>
+      <dsig:DigestValue>sWO3pkJvpVGPs3rQ9xOfrCQkrbSwC9NLBBm7e1/cTOg=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="WSSAT.exe.config" size="261">
+  <file name="XML\DisclosureVulnerabilities.xml" size="4014" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>mxcZCQAmAD0HLXbGE6VJcvR8d2RBYoJTUcq6h13L9sA=</dsig:DigestValue>
+      <dsig:DigestValue>gXs6VS8avwy7CKBiv5Xb4UrfKmq55jJPuaMWtG9P2jE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="XML\DisclosureVulnerabilities.xml" size="3916" writeableType="applicationData">
+  <file name="XML\StaticVulnerabilities.xml" size="6402" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>EHy//U7enFvVki+G1gx8DfVp1mWS5b3hLjRauTOFV2k=</dsig:DigestValue>
+      <dsig:DigestValue>VhhxTJz+cfbJAy5ZxKYqnTk9F9Lmwms4sS4+J13FDJc=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="XML\StaticVulnerabilities.xml" size="6275" writeableType="applicationData">
+  <file name="XML\Vulnerabilities.xml" size="12966" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>umWejZqLygpuFojsPddCvSBGnQDZJqmPw7+ddOqf2w8=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="XML\Vulnerabilities.xml" size="12629" writeableType="applicationData">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>MGnid+2aHU1Db0gy8bQIDHBtRds7bqoxJzt4D+Tv1jM=</dsig:DigestValue>
+      <dsig:DigestValue>yFQCRKK0gVL72A+oIsvchrjADV4DNdb7tI4TdyL0rAA=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

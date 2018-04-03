@@ -28,6 +28,8 @@ namespace WSSAT
         public static string CustomRequestHeader = string.Empty;
         public static string UserAgentHeader = string.Empty;
 
+        public RESTApi RestAPIDesc;
+
         public MainForm()
         {
             InitializeComponent();
@@ -286,9 +288,9 @@ namespace WSSAT
             }
         }
 
-        public void ScanRESTApi(RESTApi restDesc)
+        public void ScanRESTApi()
         {
-            if (restDesc != null)
+            if (RestAPIDesc != null)
             {
                 lvResult.Items.Clear();
 
@@ -304,26 +306,26 @@ namespace WSSAT
 
                 WSDescriberForReport WSItemVulnerabilities = new WSDescriberForReport();
 
-                WSItemVulnerabilities.RestAPI = restDesc;
+                WSItemVulnerabilities.RestAPI = RestAPIDesc;
                 WSItemVulnerabilities.StaticVulns = new List<StaticVulnerabilityForReport>();
                 WSItemVulnerabilities.Vulns = new List<VulnerabilityForReport>();
                 WSItemVulnerabilities.InfoVulns = new List<DisclosureVulnerabilityForReport>();
 
-                Log("API Address: " + restDesc.Url.AbsoluteUri, FontStyle.Bold, true, false);
+                Log("API Address: " + RestAPIDesc.Url.AbsoluteUri, FontStyle.Bold, true, false);
                 Log("Parsing API...", FontStyle.Regular, true, false);
 
                 List<Param> respHeader = new List<Param>();
 
                 bool untrustedSSLSecureChannel = false;
-                RestParser restParser = new RestParser(ref restDesc);
+                RestParser restParser = new RestParser(ref RestAPIDesc);
 
                 if (chkDynamicScan.Checked)
                 {
-                    RestHTTPHelper HttpHelper = new RestHTTPHelper(ref restDesc, ref untrustedSSLSecureChannel, ref respHeader, CustomRequestHeader);
+                    RestHTTPHelper HttpHelper = new RestHTTPHelper(ref RestAPIDesc, ref untrustedSSLSecureChannel, ref respHeader, CustomRequestHeader);
 
-                    if (!restDesc.Url.Scheme.Equals("https"))
+                    if (!RestAPIDesc.Url.Scheme.Equals("https"))
                     {
-                        Log(" Vulnerability Found - SSL Not Used, Uri Schema is " + restDesc.Url.Scheme, FontStyle.Bold, true, false);
+                        Log(" Vulnerability Found - SSL Not Used, Uri Schema is " + RestAPIDesc.Url.Scheme, FontStyle.Bold, true, false);
                         AddSSLRelatedVulnerability(WSItemVulnerabilities, 0);
                     }
                     else
@@ -336,8 +338,8 @@ namespace WSSAT
                     }
 
                     int paramCount = 0;
-                    paramCount = restDesc.UrlParameters != null ? restDesc.UrlParameters.Count : 0;
-                    paramCount += restDesc.PostParameters != null ? restDesc.PostParameters.Count : 0;
+                    paramCount = RestAPIDesc.UrlParameters != null ? RestAPIDesc.UrlParameters.Count : 0;
+                    paramCount += RestAPIDesc.PostParameters != null ? RestAPIDesc.PostParameters.Count : 0;
 
                     RestDynamicVulnerabilityScanner restDynScn = new RestDynamicVulnerabilityScanner(this);
 
@@ -352,7 +354,7 @@ namespace WSSAT
 
                                 try
                                 {
-                                    restDynScn.ScanVulnerabilities(vuln, restDesc, WSItemVulnerabilities, reportObject,
+                                    restDynScn.ScanVulnerabilities(vuln, RestAPIDesc, WSItemVulnerabilities, reportObject,
                                     chkDebug.Checked, ref respHeader, HttpHelper, CustomRequestHeader);
                                 }
                                 catch (Exception ex)
@@ -368,7 +370,7 @@ namespace WSSAT
                         VulnerabilitiesVulnerability optionsVuln = vulnerabilities.Vulnerability.Where(v => v.id == 9).FirstOrDefault();
                         if (optionsVuln != null)
                         {
-                            restDynScn.CheckHTTPOptionsVulns(restDesc, optionsVuln, WSItemVulnerabilities, reportObject,
+                            restDynScn.CheckHTTPOptionsVulns(RestAPIDesc, optionsVuln, WSItemVulnerabilities, reportObject,
                                                    chkDebug.Checked, ref respHeader, HttpHelper, CustomRequestHeader);
                         }
                     }
@@ -382,7 +384,7 @@ namespace WSSAT
                         VulnerabilitiesVulnerability xstVuln = vulnerabilities.Vulnerability.Where(v => v.id == 10).FirstOrDefault();
                         if (xstVuln != null)
                         {
-                            restDynScn.CheckXSTVulns(restDesc, xstVuln, WSItemVulnerabilities, reportObject,
+                            restDynScn.CheckXSTVulns(RestAPIDesc, xstVuln, WSItemVulnerabilities, reportObject,
                                                    chkDebug.Checked, ref respHeader, HttpHelper, CustomRequestHeader);
                         }
                     }
@@ -544,7 +546,7 @@ namespace WSSAT
 
         private void ShowRestFormScan()
         {
-            RESTInfoEntry frm = new RESTInfoEntry(this);
+            RESTInfoEntry frm = new RESTInfoEntry(this, RestAPIDesc);
             frm.ShowDialog(this);
         }
 
