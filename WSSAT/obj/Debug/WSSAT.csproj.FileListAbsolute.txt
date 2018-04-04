@@ -39,7 +39,8 @@ C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.MainForm.resources
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.Properties.Resources.resources
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.RESTInfoEntry.resources
-C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.csproj.GenerateResource.Cache
+C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.csproj.GenerateResource.cache
+C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.csproj.CoreCompileInputs.cache
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.exe.manifest
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.application
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSSAT\obj\Debug\WSSAT.exe

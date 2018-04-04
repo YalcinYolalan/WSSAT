@@ -12,7 +12,7 @@
 - MenuStrip to main form.
 - About form.
 - Custom SOAP header & body tag entry form.
-- Custom HTTP header & UserAgent entry form (especially to add custom cookie such as "Cookie: JSESSIONID=.....".
+- Custom HTTP header & UserAgent entry form (especially to add custom cookie such as "Cookie: JSESSIONID=.....").
 - CHANGELOG.md
 
 ### Changed
@@ -24,4 +24,5 @@
 - Project Wiki https://github.com/YalcinYolalan/WSSAT/wiki
 - Project Homepage http://yalcinyolalan.github.io/WSSAT/
 - Project v2.0 release published.
-- .Net Framework Upgrade to 4.7  
+- .Net Framework Upgrade (4.5 to 4.7).
+- Visual Studio Upgrade (Community Edition 2015 to 2017).

@@ -7,6 +7,6 @@ D:\Projects\DotNet\CSharp\WSSAT\WebService2Test\obj\Debug\WebService2Test.pdb
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\bin\WebService2Test.dll.config
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\bin\WebService2Test.dll
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\bin\WebService2Test.pdb
-C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\obj\Debug\WebService2Test.csprojResolveAssemblyReference.cache
+C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\obj\Debug\WebService2Test.csproj.CoreCompileInputs.cache
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\obj\Debug\WebService2Test.dll
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WebService2Test\obj\Debug\WebService2Test.pdb

@@ -113,6 +113,7 @@ C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSAPI2Test\bin\
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSAPI2Test\bin\System.Web.WebPages.Deployment.xml
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSAPI2Test\bin\System.Web.WebPages.Razor.xml
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSAPI2Test\bin\Antlr3.Runtime.pdb
-C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSAPI2Test\obj\Debug\WSAPI2Test.csprojResolveAssemblyReference.cache
+C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSAPI2Test\obj\Debug\WSAPI2Test.csproj.CoreCompileInputs.cache
+C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSAPI2Test\obj\Debug\WSAPI2Test.csproj.CopyComplete
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSAPI2Test\obj\Debug\WSAPI2Test.dll
 C:\Users\myolalan\Desktop\Personal\METU\Project\SourceCode\WSSAT\WSAPI2Test\obj\Debug\WSAPI2Test.pdb
