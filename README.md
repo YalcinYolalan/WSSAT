@@ -42,7 +42,7 @@ With this tool, all web services could be analysed at once and the overall secur
 * Logger
 * Report Generator
 
-**Installation & Usage**
+**Installation & Usage:**
 * [Installation](https://github.com/YalcinYolalan/WSSAT/wiki/Installation)
 * [Usage](https://github.com/YalcinYolalan/WSSAT/wiki/USAGE)
 
@@ -54,3 +54,16 @@ The main difference of WSSAT is to create a dynamic vulnerability management env
 
 _This project has been started as Term Project at Middle East Technical University (METU), Software Management master program._
 
+**Donation:**
+
+WSSAT is an open source project and your donation will make it better:
+
+```
+    Bitcoin (BTC): 19qsms2YnaN6CY7tFsWpqwAtQyV7QFhGs4
+```
+```
+    Ether (ETH): 0x08b543C5B2398999e8d03BC77b76329d832B2f82
+```
+```
+    Bitcoin Cash (BCH): qps07ker5c2t3h9355taueu0u83yxfw4jye6s4na2e
+```
