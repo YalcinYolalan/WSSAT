@@ -46,6 +46,8 @@ With this tool, all web services could be analysed at once and the overall secur
 * [Installation](https://github.com/YalcinYolalan/WSSAT/wiki/Installation)
 * [Usage](https://github.com/YalcinYolalan/WSSAT/wiki/USAGE)
 
+For more [Help](https://github.com/YalcinYolalan/WSSAT/wiki)
+
 The main difference of WSSAT is to create a dynamic vulnerability management environment instead of embedding the vulnerabilities into the code.
 
 [![WSSAT - Black Hat Arsenal Tool](https://www.toolswatch.org/badges/arsenal/2016.svg)](https://www.blackhat.com/us-16/arsenal.html#web-service-security-assessment-tool-wssat)
