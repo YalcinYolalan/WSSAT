@@ -59,11 +59,11 @@ _This project has been started as Term Project at Middle East Technical Universi
 WSSAT is an open source project and your donation will make it better:
 
 ```
-    Bitcoin (BTC): 19qsms2YnaN6CY7tFsWpqwAtQyV7QFhGs4
+Bitcoin (BTC): 19qsms2YnaN6CY7tFsWpqwAtQyV7QFhGs4
 ```
 ```
-    Ether (ETH): 0x08b543C5B2398999e8d03BC77b76329d832B2f82
+Ether (ETH): 0x08b543C5B2398999e8d03BC77b76329d832B2f82
 ```
 ```
-    Bitcoin Cash (BCH): qps07ker5c2t3h9355taueu0u83yxfw4jye6s4na2e
+Bitcoin Cash (BCH): qps07ker5c2t3h9355taueu0u83yxfw4jye6s4na2e
 ```
