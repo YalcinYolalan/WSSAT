@@ -50,7 +50,8 @@ For more [Help](https://github.com/YalcinYolalan/WSSAT/wiki)
 
 The main difference of WSSAT is to create a dynamic vulnerability management environment instead of embedding the vulnerabilities into the code.
 
-[![WSSAT - Black Hat Arsenal Tool](https://www.toolswatch.org/badges/arsenal/2016.svg)](https://www.blackhat.com/us-16/arsenal.html#web-service-security-assessment-tool-wssat)
+[![Black Hat Arsenal USA](https://github.com/toolswatch/badges/blob/master/arsenal/usa/2016.svg)](https://www.blackhat.com/us-16/arsenal.html#web-service-security-assessment-tool-wssat) 
+[![Black Hat Arsenal Europe](https://github.com/toolswatch/badges/blob/master/arsenal/europe/2016.svg)](https://www.blackhat.com/eu-16/arsenal.html#wssat-web-service-security-assessment-tool)
 
 _This project has been started as Term Project at Middle East Technical University (METU), Software Management master program._
 
