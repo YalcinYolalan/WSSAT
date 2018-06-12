@@ -54,7 +54,7 @@ The main difference of WSSAT is to create a dynamic vulnerability management env
 [![Black Hat Arsenal Europe](https://github.com/toolswatch/badges/blob/master/arsenal/europe/2016.svg)](https://www.blackhat.com/eu-16/arsenal.html#wssat-web-service-security-assessment-tool)
 
 _This project has been started as Term Project at Middle East Technical University (METU), Software Management master program._
-
+<!--
 **Donation:**
 
 WSSAT is an open source project and your donation will make it better:
@@ -68,3 +68,4 @@ Ether (ETH): 0x08b543C5B2398999e8d03BC77b76329d832B2f82
 ```
 Bitcoin Cash (BCH): qps07ker5c2t3h9355taueu0u83yxfw4jye6s4na2e
 ```
+-->
