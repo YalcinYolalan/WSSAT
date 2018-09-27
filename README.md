@@ -44,7 +44,7 @@ With this tool, all web services could be analysed at once and the overall secur
 
 **Installation & Usage:**
 * [Installation](https://github.com/YalcinYolalan/WSSAT/wiki/Installation)
-* [Usage](https://github.com/YalcinYolalan/WSSAT/wiki/USAGE)
+* [Usage](https://github.com/YalcinYolalan/WSSAT/wiki/Usage)
 
 For more [Help](https://github.com/YalcinYolalan/WSSAT/wiki)
 
